@@ -1,14 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package br.edu.ifnmg.estudiofotografia.gui;
 
 import static com.sun.source.util.Trees.instance;
 
 /**
  *
- * @author Rikelme
+ * @author Rikelme, Artur e Djalmir
  */
 public class CadastroColaborador extends javax.swing.JInternalFrame {
     private static CadastroColaborador instance;

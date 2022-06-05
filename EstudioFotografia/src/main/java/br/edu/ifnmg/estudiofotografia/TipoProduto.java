@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 /**
  *
- * @author Rikelme
+ * @author Rikelme, Artur e Djalmir
  */
 public class TipoProduto {
 

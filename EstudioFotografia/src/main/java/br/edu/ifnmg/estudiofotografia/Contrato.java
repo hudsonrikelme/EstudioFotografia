@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Rikelme
+ * @author Rikelme, Artur e Djalmir
  */
 public class Contrato {
     

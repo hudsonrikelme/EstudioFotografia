@@ -2,7 +2,7 @@ package br.edu.ifnmg.estudiofotografia;
 
 /**
  *
- * @author Rikelme
+ * @author Rikelme, Artur e Djalmir
  */
 public class Pessoa {
     
