@@ -6,7 +6,7 @@ package br.edu.ifnmg.estudiofotografia.gui;
 
 /**
  *
- * @author Rikelme, Artur e Djalmir
+ * @author Rikelme, Artur e Dijalmir
  */
 public class CadastroCliente extends javax.swing.JInternalFrame {
 

@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 /**
  *
- * @author Rikelme, Artur e Djalmir
+ * @author Rikelme, Artur e Dijalmir
  */
 public class Program {
     public static void main(String[] args) {

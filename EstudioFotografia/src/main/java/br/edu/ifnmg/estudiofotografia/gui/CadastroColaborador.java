@@ -4,7 +4,7 @@ import static com.sun.source.util.Trees.instance;
 
 /**
  *
- * @author Rikelme, Artur e Djalmir
+ * @author Rikelme, Artur e Dijalmir
  */
 public class CadastroColaborador extends javax.swing.JInternalFrame {
     private static CadastroColaborador instance;

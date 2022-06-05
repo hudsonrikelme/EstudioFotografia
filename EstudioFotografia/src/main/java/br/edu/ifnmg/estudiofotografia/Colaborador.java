@@ -3,7 +3,7 @@ package br.edu.ifnmg.estudiofotografia;
 import java.util.ArrayList;
 /**
  *
- * @author Rikelme, Artur e Djalmir
+ * @author Rikelme, Artur e Dijalmir
  */
 public class Colaborador extends Pessoa{
     

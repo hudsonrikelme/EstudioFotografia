@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 /**
  *
- * @author Rikelme, Artur e Djalmir
+ * @author Rikelme, Artur e Dijalmir
  */
 public class Pagamento {
 
