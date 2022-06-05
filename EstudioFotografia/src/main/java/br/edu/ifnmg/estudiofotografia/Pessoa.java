@@ -5,33 +5,47 @@ package br.edu.ifnmg.estudiofotografia;
  * @author Rikelme
  */
 public class Pessoa {
+    
+    //<editor-fold defaultstate="collapsed" desc="Atributos">
+    
     private String nome;
-    private String email;
     private Long cpf;
+    private String email;
+    
+    
+    
+    
+//</editor-fold>
 
+    
+    //<editor-fold defaultstate="collapsed" desc="Construtores">
+      
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String email, Long cpf) {
+    public Pessoa(String nome, Long cpf, String email) {
         this.nome = nome;
-        this.email = email;
+        
+        //TODO implementar o teste de CPF
+        
         this.cpf = cpf;
+        this.email = email;
     }
 
-    public String getNome() {
+    
+    
+    
+//</editor-fold>
+    
+    
+    //<editor-fold defaultstate="collapsed" desc="Getters e Setters">
+    
+     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Long getCpf() {
@@ -42,10 +56,39 @@ public class Pessoa {
         this.cpf = cpf;
     }
 
-    @Override
-    public String toString() {
-        return "Pessoa{" + "nome=" + nome + ", email=" + email + ", cpf=" + cpf + '}';
+    public String getEmail() {
+        return email;
     }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    
+    
+//</editor-fold>
+
+    
+    //<editor-fold defaultstate="collapsed" desc="To_String">
+    
+        @Override
+    public String toString() {
+        return ("Nome: " +nome+"\n"
+                + "CPF: "+cpf+"\n"
+                + "Email: "+email+"\n");
+    }
+    
+//</editor-fold>
+
+    
+    
+
+    
+
+    
+    
+    
+    
     
     
 }
