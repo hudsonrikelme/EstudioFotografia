@@ -1,6 +1,7 @@
 package br.edu.ifnmg.estudiofotografia;
 
 import br.edu.ifnmg.estudiofotografia.entity.Pessoa;
+import br.edu.ifnmg.estudiofotografia.repository.PessoaDao;
 import java.time.LocalDateTime;
 
 /**
@@ -20,7 +21,6 @@ public class Program {
         p1.setNome("Ana");
         p1.setCpf(74193712028L);
         p1.setEmail("ana@mail.com");
-        
 
         p2.setNome("Carla");
         p2.setCpf(223344L);

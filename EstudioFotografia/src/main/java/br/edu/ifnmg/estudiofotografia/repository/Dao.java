@@ -3,9 +3,12 @@ package br.edu.ifnmg.estudiofotografia.repository;
 import br.edu.ifnmg.estudiofotografia.entity.Entidade;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -78,6 +81,35 @@ public abstract class Dao<E, K>
         return (K) id;
     }
 
+    @Override
+    public Boolean excluir(E e) {
+        // Recupera a identidade (chave primária) do objeto a ser excluído
+        Long id = ((Entidade) e).getId();
+
+        // Se há uma identidade válida...
+        if (id != null && id != 0) {
+            // ... tenta preparar uma sentença SQL para a conexão já estabelecida
+            try (PreparedStatement pstmt
+                    = ConexaoBd.getConexao().prepareStatement(
+                            // Sentença SQL para exclusão de registros
+                            getDeclaracaoDelete())) {
+
+                // Prepara a declaração com os dados do objeto passado
+                ajustarIdDeclaracao(pstmt, (K) id);
+
+                // Executa o comando SQL
+                pstmt.executeUpdate();
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
+        } else {
+            return false;
+        }
+
+        return true;
+    }
     /**
      * Recupera um objeto do banco de dados.
      *
@@ -151,6 +183,15 @@ public abstract class Dao<E, K>
      * @return Sentença SQL de atualização.
      */
     public abstract String obterSentencaUpdate();
+     /**
+     * Recupera a sentença SQL específica para a exclusão da entidade no banco
+     * de dados.
+     *
+     * @return Sentença SQl para exclusão.
+     */
+    private String getDeclaracaoDelete() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
     /**
      * Sentença SQL específica para cada tipo de objeto a ser localizado no
@@ -171,5 +212,22 @@ public abstract class Dao<E, K>
     public abstract void montarDeclaracao(PreparedStatement pstmt, E e);
 
     public abstract E extrairObjeto(ResultSet resultSet);
+
+
+    private void ajustarIdDeclaracao(PreparedStatement pstmt, K id) {
+        try {
+            // Caso id seja um Long, emprega setLong()
+            if(id instanceof Long) {
+                // Cast é requerido porque K não é um tipo previamente definido
+                pstmt.setLong(1, (Long) id);
+            } else {
+                // Caso id seja um Integer, emprega setLong()
+                pstmt.setInt(1, (Integer) id);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Dao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }
