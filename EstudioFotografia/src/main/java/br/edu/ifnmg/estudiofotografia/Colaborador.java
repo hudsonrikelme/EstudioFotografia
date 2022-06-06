@@ -1,5 +1,6 @@
 package br.edu.ifnmg.estudiofotografia;
 
+import br.edu.ifnmg.estudiofotografia.entity.Pessoa;
 import java.util.ArrayList;
 /**
  *

@@ -1,10 +1,13 @@
-package br.edu.ifnmg.estudiofotografia;
+package br.edu.ifnmg.estudiofotografia.entity;
+
+import br.edu.ifnmg.estudiofotografia.util.Util;
 
 /**
  *
  * @author Rikelme, Artur e Dijalmir
  */
-public class Pessoa {
+public class Pessoa 
+        extends Entidade{
     
     //<editor-fold defaultstate="collapsed" desc="Atributos">
     
@@ -24,11 +27,8 @@ public class Pessoa {
     }
 
     public Pessoa(String nome, Long cpf, String email) {
+        super(cpf);
         this.nome = nome;
-        
-        //TODO implementar o teste de CPF
-        
-        this.cpf = cpf;
         this.email = email;
     }
 
@@ -44,7 +44,11 @@ public class Pessoa {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public void setNome(String nome) 
+              throws IllegalArgumentException {
+        if (nome.length() > 50) {
+            throw new IllegalArgumentException("Comprimento de nome inválido");
+        }
         this.nome = nome;
     }
 
@@ -52,8 +56,13 @@ public class Pessoa {
         return cpf;
     }
 
-    public void setCpf(Long cpf) {
-        this.cpf = cpf;
+    public void setCpf(Long cpf) 
+             throws IllegalArgumentException {
+        if (Util.isCpfValido(cpf)) {
+            this.cpf = cpf;
+        } else {
+            throw new IllegalArgumentException("CPF inválido");
+        }
     }
 
     public String getEmail() {
@@ -73,9 +82,12 @@ public class Pessoa {
     
         @Override
     public String toString() {
-        return ("Nome: " +nome+"\n"
-                + "CPF: "+cpf+"\n"
-                + "Email: "+email+"\n");
+        return "Entidade{id=" + getId()
+                + "} Pessoa{"
+                + "cpf=" + cpf
+                + ", nome=" + nome
+                + ", email=" + email
+                + '}';
     }
     
 //</editor-fold>
