@@ -1,5 +1,10 @@
 package br.edu.ifnmg.estudiofotografia;
 
+import br.edu.ifnmg.estudiofotografia.entity.Cliente;
+import br.edu.ifnmg.estudiofotografia.entity.Colaborador;
+import br.edu.ifnmg.estudiofotografia.entity.Contrato;
+import br.edu.ifnmg.estudiofotografia.entity.TipoTrabalho;
+import br.edu.ifnmg.estudiofotografia.entity.TipoProduto;
 import br.edu.ifnmg.estudiofotografia.entity.Pessoa;
 import br.edu.ifnmg.estudiofotografia.repository.PessoaDao;
 import java.time.LocalDateTime;
@@ -25,7 +30,10 @@ public class Program {
         p2.setNome("Carla");
         p2.setCpf(223344L);
         p2.setEmail("carla@mail.com");
-
+        
+        new PessoaDao().salvar(p1);
+        
+        
         p3.setNome("Pedro");
         p3.setCpf(334455L);
         p3.setEmail("pedro@mail.com");

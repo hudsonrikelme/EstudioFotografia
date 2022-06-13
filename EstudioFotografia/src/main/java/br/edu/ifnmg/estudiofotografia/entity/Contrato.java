@@ -1,5 +1,7 @@
-package br.edu.ifnmg.estudiofotografia;
+package br.edu.ifnmg.estudiofotografia.entity;
 
+import br.edu.ifnmg.estudiofotografia.entity.Pagamento;
+import br.edu.ifnmg.estudiofotografia.entity.TipoProduto;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 

@@ -1,5 +1,7 @@
-package br.edu.ifnmg.estudiofotografia;
+package br.edu.ifnmg.estudiofotografia.entity;
 
+import br.edu.ifnmg.estudiofotografia.entity.Contrato;
+import br.edu.ifnmg.estudiofotografia.entity.TipoTrabalho;
 import br.edu.ifnmg.estudiofotografia.entity.Pessoa;
 import java.util.ArrayList;
 /**

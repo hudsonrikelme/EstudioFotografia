@@ -1,4 +1,4 @@
-package br.edu.ifnmg.estudiofotografia;
+package br.edu.ifnmg.estudiofotografia.entity;
 
 import java.math.BigDecimal;
 
