@@ -11,10 +11,10 @@ import java.util.logging.Logger;
  *
  * @author Rikelme
  */
-public class PessoaDao
-    extends Dao<Pessoa, Long>{
-   /*
-    CREATE TABLE `pessoa` (
+public class ColaboradorDao 
+        extends Dao<Pessoa, Long>{
+    /*
+    CREATE TABLE `colaborador` (
         `id` bigint(20) NOT NULL AUTO_INCREMENT,
         `cpf` bigint(20) NOT NULL,
         `nome` varchar(50) NOT NULL,
@@ -83,5 +83,4 @@ public class PessoaDao
 
         return pf;
     }
-
 }

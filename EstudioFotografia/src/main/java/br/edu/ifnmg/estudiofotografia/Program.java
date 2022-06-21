@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 /**
  *
- * @author Rikelme, Artur e Dijalmir
+ * @author Rikelme
  */
 public class Program {
     public static void main(String[] args) {
@@ -27,25 +27,33 @@ public class Program {
         p1.setCpf(74193712028L);
         p1.setEmail("ana@mail.com");
 
+        new PessoaDao().salvar(p1);
+        
         p2.setNome("Carla");
-        p2.setCpf(223344L);
+        p2.setCpf(22334456478L);
         p2.setEmail("carla@mail.com");
         
-        new PessoaDao().salvar(p1);
+        new PessoaDao().salvar(p2);
         
         
         p3.setNome("Pedro");
         p3.setCpf(334455L);
         p3.setEmail("pedro@mail.com");
 
+        new PessoaDao().salvar(p3);
+        
         p4.setNome("Mario");
         p4.setCpf(445566L);
         p4.setEmail("mario@mail.com");
 
+        new PessoaDao().salvar(p4);
+        
         p5.setNome("João");
         p5.setCpf(556677L);
         p5.setEmail("João@mail.com");
 
+        new PessoaDao().salvar(p5);
+        
         System.out.println("========Definição de 5 Pessoas========");
         System.out.println(p1);
         System.out.println(p2);
@@ -55,14 +63,14 @@ public class Program {
 
 //</editor-fold>
 //<editor-fold defaultstate="collapsed" desc="Definição dos tês tipos de trabalho">
-        TipoTrabalho papelDePrimFotografo = new TipoTrabalho(1);
-        TipoTrabalho papelDeSegFotografo = new TipoTrabalho(2);
-        TipoTrabalho papelDeAssitente = new TipoTrabalho(3);
+        TipoTrabalho papelPrimeiroFotografo = new TipoTrabalho(1);
+        TipoTrabalho papelSegundoFotografo = new TipoTrabalho(2);
+        TipoTrabalho papelAssitente = new TipoTrabalho(3);
 
         System.out.println("========Definição de 3 tipos de trabalho========");
-        System.out.println(papelDePrimFotografo);
-        System.out.println(papelDeSegFotografo);
-        System.out.println(papelDeAssitente);
+        System.out.println(papelPrimeiroFotografo);
+        System.out.println(papelSegundoFotografo);
+        System.out.println(papelAssitente);
 
 //</editor-fold>
 //<editor-fold defaultstate="collapsed" desc="Definição de 3 colaboradores">

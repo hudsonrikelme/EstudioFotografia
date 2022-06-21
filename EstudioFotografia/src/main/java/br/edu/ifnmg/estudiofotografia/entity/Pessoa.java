@@ -14,10 +14,6 @@ public class Pessoa
     private String nome;
     private Long cpf;
     private String email;
-    
-    
-    
-    
 //</editor-fold>
 
     

@@ -4,14 +4,15 @@ import java.math.BigDecimal;
 
 /**
  *
- * @author Rikelme, Artur e Dijalmir
+ * @author Rikelme
  */
-public class TipoTrabalho {
+public class TipoTrabalho 
+            extends Entidade{
     
     //<editor-fold defaultstate="collapsed" desc="Atributos">
        
         private Integer index;
-        private String nome=new String();
+        private String nome = new String();
         private BigDecimal remuneracao;
         
 //</editor-fold>

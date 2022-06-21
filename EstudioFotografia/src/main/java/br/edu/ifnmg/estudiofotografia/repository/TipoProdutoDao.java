@@ -11,9 +11,9 @@ import java.util.logging.Logger;
  *
  * @author Rikelme
  */
-public class PessoaDao
-    extends Dao<Pessoa, Long>{
-   /*
+public class TipoProdutoDao 
+            extends Dao<Pessoa, Long>{
+    /*
     CREATE TABLE `pessoa` (
         `id` bigint(20) NOT NULL AUTO_INCREMENT,
         `cpf` bigint(20) NOT NULL,
@@ -83,5 +83,4 @@ public class PessoaDao
 
         return pf;
     }
-
 }

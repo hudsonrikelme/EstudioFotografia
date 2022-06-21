@@ -3,6 +3,7 @@ package br.edu.ifnmg.estudiofotografia.entity;
 import br.edu.ifnmg.estudiofotografia.entity.Contrato;
 import br.edu.ifnmg.estudiofotografia.entity.Pessoa;
 import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Rikelme, Artur e Dijalmir
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 public class Cliente extends Pessoa {
     
     //<editor-fold defaultstate="collapsed" desc="Atributos">
-    private ArrayList<Contrato> contratos = new ArrayList<>();
+    private List<Contrato> contratos = new ArrayList<>();
 
 //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Construtores">

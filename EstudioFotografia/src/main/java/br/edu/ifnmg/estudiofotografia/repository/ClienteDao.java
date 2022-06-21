@@ -11,17 +11,14 @@ import java.util.logging.Logger;
  *
  * @author Rikelme
  */
-public class PessoaDao
-    extends Dao<Pessoa, Long>{
+public class ClienteDao 
+        extends Dao<Pessoa, Long>{
+    //private List<Contrato> contratos = new ArrayList<>();
    /*
-    CREATE TABLE `pessoa` (
-        `id` bigint(20) NOT NULL AUTO_INCREMENT,
-        `cpf` bigint(20) NOT NULL,
-        `nome` varchar(50) NOT NULL,
+    CREATE TABLE `cliente` (
+        `id` bigint(11) NOT NULL AUTO_INCREMENT,
         `email` varchar(255) DEFAULT NULL,
         PRIMARY KEY (`id`),
-        UNIQUE KEY `cpf` (`cpf`),
-        UNIQUE KEY `email` (`email`)
     ) engine=Innodb;
 -- */
 //    
@@ -82,6 +79,5 @@ public class PessoaDao
         }
 
         return pf;
-    }
-
+    } 
 }
