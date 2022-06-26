@@ -21,11 +21,9 @@ public class PagamentoDao
     CREATE TABLE `pagamento` (
              `id` bigint(20) NOT NULL,
              `valor` decimal NOT NULL,
-             `datapagamento` date,
-             `contrato_id` bigint(20) NOT NULL,
+             `datapagamento` date DEFAULT NULL,
              PRIMARY KEY (`id`),
-             KEY `contrato_id` (`contrato_id`),
-             CONSTRAINT `pagamento_ibfk_1` FOREIGN KEY (`contrato_id`) REFERENCES `contrato` (`id`)
+             foreign key (id) references contrato(id)
          ) engine=Innodb DEFAULT CHARSET=latin1;
 -- */
 //  
@@ -61,12 +59,12 @@ public class PagamentoDao
     
     @Override
     public String obterSentencaInsert() {
-        return "insert into pagamento (id, valor, datapagamento, contrato_id) values (default, ?, ?, ?);";
+        return "insert into pagamento (id, valor, datapagamento) values (?, ?, ?);";
     }
 
     @Override
     public String obterSentencaUpdate() {
-        return "update pagamento set valor = ?, datapagamento = ?, contrato_id where id = ?;";
+        return "update pagamento set valor = ?, datapagamento = ? where id = ?;";
     }
 
     @Override
@@ -80,19 +78,17 @@ public class PagamentoDao
     }
 
     private String obterDeclaracaoSelecionarPagamentosPorContrato() {
-        return "SELECT * FROM pagamento WHERE contrato_id = ?;";
+        return "SELECT * FROM pagamento WHERE id = ?;";
     }
     @Override
     public void montarDeclaracao(PreparedStatement pstmt, Pagamento e) {
         try {
             //update
             pstmt.setBigDecimal(1, e.getValor());
-            //pstmt.setDate(2, e.getDataPagamento()); 
-            pstmt.setLong(3, e.getcontratoId());
-
-
+            pstmt.setObject(2, e.getDataPagamento(),
+                    java.sql.Types.DATE);
             if (e.getId() != null && e.getId() != 0) {
-                pstmt.setLong(4, e.getId());
+                pstmt.setLong(3, e.getId());
             }
 
         } catch (Exception ex) {
@@ -143,41 +139,39 @@ public class PagamentoDao
         return pagamentos;
     }
 
-//    @Override
-//    public Long salvar(Pagamento e) {
-//        // Novo registro: nenhum objeto localizado para atualização
-//        if (localizarPorId(e.getId()) == null) {
-//
-//            // try-with-resources libera recurso ao final do bloco (PreparedStatement)
-//            try (PreparedStatement pstmt
-//                    = ConexaoBd.getConexao().prepareStatement(
-//                            // Sentença SQL para inserção de registros
-//                            obterSentencaInsert())) {
-//
-//                // Prepara a declaração com os dados do objeto passado
-//                pstmt.setLong(1, e.getId());
-//                pstmt.setBigDecimal(2, e.getValor());
-//               
-//                
-//                pstmt.setLong(4, e.getcontratoId());
-//
-//                // Executa o comando SQL
-//                pstmt.executeUpdate();
-//
-//            } catch (Exception ex) {
-//                ex.printStackTrace();
-//            }
-//
-//        } else {
-//            // Mesma operação de atualização da superclasse.
-//            // Como a id terá um valor, sempre executará a atualização
-//            // nesta chamada.
-//            super.salvar(e);
-//        }
-//
-//        // Cast requerido para adaptação do tipo pois, mesmo que a id seja sempre
-//        // longa, esse trecho de código não reconhece tal tipo implicitamente
-//        return e.getId();
-//    }
+    @Override
+    public Long salvar(Pagamento e) {
+        // Novo registro: nenhum objeto localizado para atualização
+        if (localizarPorId(e.getId()) == null) {
+
+            // try-with-resources libera recurso ao final do bloco (PreparedStatement)
+            try (PreparedStatement pstmt
+                    = ConexaoBd.getConexao().prepareStatement(
+                            // Sentença SQL para inserção de registros
+                            obterSentencaInsert())) {
+
+                // Prepara a declaração com os dados do objeto passado
+                pstmt.setLong(1, e.getId());
+                pstmt.setBigDecimal(2, e.getValor());
+                pstmt.setObject(3, e.getDataPagamento(),
+                    java.sql.Types.DATE);
+                // Executa o comando SQL
+                pstmt.executeUpdate();
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
+        } else {
+            // Mesma operação de atualização da superclasse.
+            // Como a id terá um valor, sempre executará a atualização
+            // nesta chamada.
+            super.salvar(e);
+        }
+
+        // Cast requerido para adaptação do tipo pois, mesmo que a id seja sempre
+        // longa, esse trecho de código não reconhece tal tipo implicitamente
+        return e.getId();
+    }
     
 }

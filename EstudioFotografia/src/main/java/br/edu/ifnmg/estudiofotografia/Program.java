@@ -35,8 +35,8 @@ public class Program {
         p1.setSenha("ana123");
 
         //new PessoaDao().salvar(p1);
-        Long id = pessoaDao.salvar(p1);
-        p1.setId(id);
+//        Long id = pessoaDao.salvar(p1);
+//        p1.setId(id);
 
         p2.setNome("Carla Helem");
         p2.setCpf(22334456478L);
@@ -44,8 +44,8 @@ public class Program {
         p2.setSenha("carla123");
 
 
-        id = pessoaDao.salvar(p2);
-        p2.setId(id);
+//        id = pessoaDao.salvar(p2);
+//        p2.setId(id);
 
         p3.setNome("Pedro");
         p3.setCpf(33445546871L);
@@ -53,8 +53,8 @@ public class Program {
         p3.setSenha("ana123");
 
 
-        id = pessoaDao.salvar(p3);
-        p3.setId(id);
+//        id = pessoaDao.salvar(p3);
+//        p3.setId(id);
         //new PessoaDao().salvar(p3);
 
         p4.setNome("Mario");
@@ -63,8 +63,8 @@ public class Program {
         p4.setSenha("mario123");
 
 
-        id = pessoaDao.salvar(p4);
-        p4.setId(id);
+//        id = pessoaDao.salvar(p4);
+//        p4.setId(id);
 
         //new PessoaDao().salvar(p4);
         p5.setNome("João");
@@ -73,8 +73,8 @@ public class Program {
         p5.setSenha("joao123");
 
 
-        id = pessoaDao.salvar(p5);
-        p5.setId(id);
+//        id = pessoaDao.salvar(p5);
+//        p5.setId(id);
         
 //        System.out.println("Pessoa: " + pessoaDao.localizarPorId(p1.getId()));
 //        System.out.println("Pessoa: " + pessoaDao.localizarTodos());
@@ -131,10 +131,10 @@ public class Program {
         Cliente cliente1 = new Cliente(p1);
         ClienteDao clientedao = new ClienteDao();
         Cliente cliente2 = new Cliente(p2);
-        id = clientedao.salvar(cliente1);
-        cliente1.setId(id);
-        id = clientedao.salvar(cliente2);
-        cliente2.setId(id);
+//        id = clientedao.salvar(cliente1);
+//        cliente1.setId(id);
+//        id = clientedao.salvar(cliente2);
+//        cliente2.setId(id);
         
         
 //        System.out.println("========Definição de 2 Clientes========");
@@ -158,9 +158,8 @@ public class Program {
         contrato1.setTipoproduto(prdt1);
         contrato1.setTipoproduto_id(1L);
         ContratoDao contratodao = new ContratoDao();
-        id = contratodao.salvar(contrato1);
-        contrato1.setId(id);
-        System.out.println(">>"+ contrato1);
+//        id = contratodao.salvar(contrato1);
+//        contrato1.setId(id);
        
 //contrato1.setDataDoEvento(LocalDateTime.of(2022, 9, 3, 18, 30));
 
@@ -171,10 +170,11 @@ public class Program {
 //</editor-fold>
         PagamentoDao pagamentodao = new PagamentoDao();
         Pagamento pagamento = new Pagamento();
+        pagamento.setId(1L);
         pagamento.setDataPagamento(LocalDate.of(2022, 06, 24));
         pagamento.setValor(BigDecimal.valueOf(150.0) );
-        pagamento.setcontratoId(1L);
-        id = pagamentodao.salvar(pagamento);
+//        pagamento.setcontratoId(1L);
+        Long id = pagamentodao.salvar(pagamento);
         pagamento.setId(id);
 
 

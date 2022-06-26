@@ -33,9 +33,7 @@ public class ContratoDao
         `cliente_id` bigint(20) NOT NULL,
         `tipoproduto_id` bigint(20) NOT NULL,
         PRIMARY KEY (`id`),
-        KEY `cliente_id` (`cliente_id`),
         foreign key (cliente_id) references cliente(id),
-        KEY `tipoproduto_id` (`tipoproduto_id`),
         foreign key(tipoproduto_id) references tipoproduto(id) 
     ) engine=Innodb;
 -- */
