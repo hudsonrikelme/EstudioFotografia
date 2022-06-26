@@ -2,36 +2,32 @@ package br.edu.ifnmg.estudiofotografia.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+
 /**
  *
  * @author Rikelme, Artur e Dijalmir
  */
-public class Pagamento {
+public class Pagamento
+        extends Entidade {
 
 //<editor-fold defaultstate="collapsed" desc="Atributos">
     private BigDecimal valor;
-    private LocalDate dataDoPagamento;
+    private LocalDate dataPagamento;
+    private Long contratoId;
 
 //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="Construtores">
-
     public Pagamento() {
     }
-    
-    
-    
-      public Pagamento(BigDecimal valor, LocalDate dataDoPagamento) {
-        this.valor = valor;
-        this.dataDoPagamento = dataDoPagamento;
-    }
-    
-    
-//</editor-fold>
 
-      //<editor-fold defaultstate="collapsed" desc="Getters e Setters">
-      
-      
+    public Pagamento(BigDecimal valor, LocalDate dataPagamento, Long contratoId) {
+        this.valor = valor;
+        this.dataPagamento = dataPagamento;
+        this.contratoId = contratoId;
+    }
+
+//</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Getters e Setters">
     public BigDecimal getValor() {
         return valor;
     }
@@ -40,17 +36,21 @@ public class Pagamento {
         this.valor = valor;
     }
 
-    public LocalDate getDataDoPagamento() {
-        return dataDoPagamento;
+    public LocalDate getDataPagamento() {
+        return dataPagamento;
     }
 
-    public void setDataDoPagamento(LocalDate dataDoPagamento) {
-        this.dataDoPagamento = dataDoPagamento;
+    public void setDataPagamento(LocalDate dataPagamento) {
+        this.dataPagamento = dataPagamento;
     }
-      
-      
+
+    public Long getcontratoId() {
+        return contratoId;
+    }
+
+    public void setcontratoId(Long ContratoId) {
+        this.contratoId = ContratoId;
+    }
+
 //</editor-fold>
-
-    
-    
 }

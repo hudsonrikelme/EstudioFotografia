@@ -1,6 +1,6 @@
 package br.edu.ifnmg.estudiofotografia.repository;
 
-import br.edu.ifnmg.estudiofotografia.entity.Pessoa;
+import br.edu.ifnmg.estudiofotografia.entity.Cliente;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,45 +12,50 @@ import java.util.logging.Logger;
  * @author Rikelme
  */
 public class ClienteDao 
-        extends Dao<Pessoa, Long>{
-    //private List<Contrato> contratos = new ArrayList<>();
+        extends Dao<Cliente, Long>{
    /*
     CREATE TABLE `cliente` (
-        `id` bigint(11) NOT NULL AUTO_INCREMENT,
+        `id` bigint(20) NOT NULL AUTO_INCREMENT,
+        `cpf` bigint(20) NOT NULL,
+        `nome` varchar(50) NOT NULL,
         `email` varchar(255) DEFAULT NULL,
+        `senha` varchar(50) NOT NULL,
         PRIMARY KEY (`id`),
+        UNIQUE KEY `cpf` (`cpf`),
+        UNIQUE KEY `email` (`email`)
     ) engine=Innodb;
 -- */
 //    
     @Override
     public String obterSentencaInsert() {
-        return "insert into pessoa (cpf, nome, email) values (?, ?, ?);";
+        return "insert into cliente (id, cpf, nome, email, senha) values (default, ?, ?, ?, ?);";
     }
 
     @Override
     public String obterSentencaUpdate() {
-        return "update pessoa set cpf = ?, nome = ?, email = ? where id = ?;";
+        return "update cliente set cpf = ?, nome = ?, email = ?, senha = ? where id = ?;";
     }
 
     @Override
     public String obterSentencaLocalizarPorId() {
-        return "select id, cpf, nome, email from pessoafisica where id = ?;";
+        return "select id, cpf, nome, email, senha from cliente where id = ?;";
     }
 
     @Override
     public String obterSentencaLocalizarTodos() {
-        return "select id, cpf, nome, email from pessoafisica where excluido = false;";
+        return "select id, cpf, nome, email, senha from cliente;";
     }
 
     @Override
-    public void montarDeclaracao(PreparedStatement pstmt, Pessoa e) {
+    public void montarDeclaracao(PreparedStatement pstmt, Cliente e) {
         try {
             pstmt.setLong(1, e.getCpf());
             pstmt.setString(2, e.getNome());
             pstmt.setString(3, e.getEmail());
+            pstmt.setString(4, e.getSenha());
 
             if (e.getId() != null && e.getId() != 0) {
-                pstmt.setLong(6, e.getId());
+                pstmt.setLong(5, e.getId());
             }
 
         } catch (Exception ex) {
@@ -65,19 +70,20 @@ public class ClienteDao
      * @return PessoaFisica equivalente ao registro recebido
      */
     @Override
-    public Pessoa extrairObjeto(ResultSet resultSet) {
-        Pessoa pf = new Pessoa();
+    public Cliente extrairObjeto(ResultSet resultSet) {
+        Cliente cliente = new Cliente();
 
         try {
-            pf.setId(resultSet.getLong("id"));
-            pf.setCpf(resultSet.getLong("cpf"));
-            pf.setNome(resultSet.getString("nome"));
-            pf.setEmail(resultSet.getString("email"));
+            cliente.setId(resultSet.getLong("id"));
+            cliente.setCpf(resultSet.getLong("cpf"));
+            cliente.setNome(resultSet.getString("nome"));
+            cliente.setEmail(resultSet.getString("email"));
+            cliente.setSenha(resultSet.getString("senha"));
 
         } catch (SQLException ex) {
-            Logger.getLogger(PessoaDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return pf;
+        return cliente;
     } 
 }

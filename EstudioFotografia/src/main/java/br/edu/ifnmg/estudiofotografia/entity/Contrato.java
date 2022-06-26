@@ -1,7 +1,6 @@
 package br.edu.ifnmg.estudiofotografia.entity;
 
-import br.edu.ifnmg.estudiofotografia.entity.Pagamento;
-import br.edu.ifnmg.estudiofotografia.entity.TipoProduto;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -9,15 +8,18 @@ import java.util.ArrayList;
  *
  * @author Rikelme, Artur e Dijalmir
  */
-public class Contrato {
+public class Contrato 
+            extends Entidade{
     
 //<editor-fold defaultstate="collapsed" desc="Atributos">
     
-    private Cliente contratante = new Cliente();
+    private Cliente cliente = new Cliente();
     private Colaborador fotografo = new Colaborador();
-    private TipoProduto itemContratado = new TipoProduto();
-    private LocalDateTime dataDoEvento;
+    private TipoProduto tipoproduto = new TipoProduto();
+    private LocalDateTime dataEvento;
     private ArrayList<Pagamento>pagamentos = new ArrayList<>(); 
+    private Long cliente_id;
+    private Long tipoproduto_id;
     
     
 //</editor-fold>
@@ -31,16 +33,30 @@ public class Contrato {
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="Getters e Setters">
-        
-        
-    public Cliente getContratante() {
-        return contratante;
+
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setContratante(Cliente contratante) {
-        this.contratante = contratante;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
+    public TipoProduto getTipoproduto() {
+        return tipoproduto;
+    }
+
+    public void setTipoproduto(TipoProduto tipoproduto) {
+        this.tipoproduto = tipoproduto;
+    }
+
+    public LocalDateTime getDataEvento() {
+        return dataEvento;
+    }
+
+    public void setDataEvento(LocalDateTime dataEvento) {
+        this.dataEvento = dataEvento;
+    }
     public Colaborador getFotografo() {
         return fotografo;
     }
@@ -48,23 +64,6 @@ public class Contrato {
     public void setFotografo(Colaborador fotografo) {
         this.fotografo = fotografo;
     }
-
-    public TipoProduto getItemContratado() {
-        return itemContratado;
-    }
-
-    public void setItemContratado(TipoProduto itemContratado) {
-        this.itemContratado = itemContratado;
-    }
-
-    public LocalDateTime getDataDoEvento() {
-        return dataDoEvento;
-    }
-
-    public void setDataDoEvento(LocalDateTime dataDoEvento) {
-        this.dataDoEvento = dataDoEvento;
-    }
-
     public ArrayList<Pagamento> getPagamentos() {
         return pagamentos;
     }
@@ -72,7 +71,24 @@ public class Contrato {
     public void setPagamentos(ArrayList<Pagamento> pagamentos) {
         this.pagamentos = pagamentos;
     }
+
+    public Long getCliente_id() {
+        return cliente_id;
+    }
+
+    public void setCliente_id(Long cliente_id) {
+        this.cliente_id = cliente_id;
+    }
+
+    public Long getTipoproduto_id() {
+        return tipoproduto_id;
+    }
+
+    public void setTipoproduto_id(Long tipoproduto_id) {
+        this.tipoproduto_id = tipoproduto_id;
+    }
         
+    
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="To_String">
@@ -80,11 +96,11 @@ public class Contrato {
     public String toString() {
 
         return ("Dados do contrato: "+"\n"
-                + "Nome do cliente: "+ contratante.getNome()+"\n"
+                + "Nome do cliente: "+ cliente.getNome()+"\n"
                 + "Nome do fotógrafo: "+ fotografo.getNome()+"\n"
-                + "Item Contratado: "+ itemContratado.getNome()+"\n"
-                + "Valor do Contrato: "+ itemContratado.getValor()+"\n"
-                + "Data do evento: "+ dataDoEvento+"\n"
+                + "Item Contratado: "+ tipoproduto.getNome()+"\n"
+                + "Valor do Contrato: "+ tipoproduto.getValor()+"\n"
+                + "Data do evento: "+ dataEvento+"\n"
                 );
     }
 

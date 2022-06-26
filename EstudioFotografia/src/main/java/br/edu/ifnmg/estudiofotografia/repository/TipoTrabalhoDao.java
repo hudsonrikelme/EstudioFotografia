@@ -13,13 +13,7 @@ import java.util.logging.Logger;
  * @author Rikelme
  */
 public class TipoTrabalhoDao 
-            extends Dao<TipoTrabalho, Long>{
-    /*
-        private Integer index;
-        private String nome = new String();
-        private BigDecimal remuneracao;
-    */
-    
+            extends Dao<TipoTrabalho, Long>{    
     /*
     CREATE TABLE `tipotrabalho` (
         `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -82,7 +76,7 @@ public class TipoTrabalhoDao
             tipotrabalho.setFuncaoNoEnsaio(resultSet.getString("nome"));
 
         } catch (SQLException ex) {
-            Logger.getLogger(PessoaDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TipoTrabalhoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return tipotrabalho;

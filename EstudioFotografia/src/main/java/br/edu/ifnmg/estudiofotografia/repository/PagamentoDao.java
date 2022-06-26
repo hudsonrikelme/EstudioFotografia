@@ -1,59 +1,98 @@
 package br.edu.ifnmg.estudiofotografia.repository;
 
-import br.edu.ifnmg.estudiofotografia.entity.Pessoa;
+import br.edu.ifnmg.estudiofotografia.entity.Contrato;
+import br.edu.ifnmg.estudiofotografia.entity.Pagamento;
+import br.edu.ifnmg.estudiofotografia.util.Util;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 /**
  *
  * @author Rikelme
  */
 public class PagamentoDao 
-            extends Dao<Pessoa, Long>{
+            extends Dao<Pagamento, Long>{
     /*
-    CREATE TABLE `pessoa` (
-        `id` bigint(20) NOT NULL AUTO_INCREMENT,
-        `cpf` bigint(20) NOT NULL,
-        `nome` varchar(50) NOT NULL,
-        `email` varchar(255) DEFAULT NULL,
-        PRIMARY KEY (`id`),
-        UNIQUE KEY `cpf` (`cpf`),
-        UNIQUE KEY `email` (`email`)
-    ) engine=Innodb;
+    CREATE TABLE `pagamento` (
+             `id` bigint(20) NOT NULL,
+             `valor` decimal NOT NULL,
+             `datapagamento` date,
+             `contrato_id` bigint(20) NOT NULL,
+             PRIMARY KEY (`id`),
+             KEY `contrato_id` (`contrato_id`),
+             CONSTRAINT `pagamento_ibfk_1` FOREIGN KEY (`contrato_id`) REFERENCES `contrato` (`id`)
+         ) engine=Innodb DEFAULT CHARSET=latin1;
 -- */
-//    
+//  
+    public List<Pagamento> localizarComentariosPorLivro(Contrato contrato) {
+
+        // Declara referência para reter o(s) objeto(s) a ser(em) recuperado(s)
+        List<Pagamento> pagamentos = new ArrayList<>();
+
+        // Tenta preparar uma sentença SQL para a conexão já estabelecida
+        try ( PreparedStatement pstmt
+                = ConexaoBd.getConexao().prepareStatement(
+                        // Sentença SQL para recuperação de todos os registros
+                        obterDeclaracaoSelecionarPagamentosPorContrato())) {
+
+            // Prepara a consulta com os parâmetros adequados
+            pstmt.setLong(1, contrato.getId());
+
+            // Executa o comando SQL
+            ResultSet resultSet = pstmt.executeQuery();
+
+            // Extrai objeto(s) do(s) respectivo(s) registro(s) do banco de dados
+            pagamentos = extrairObjetos(resultSet);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Devolve uma lista vazia (nenhum registro encontrado) 
+        // ou a relação de objeto(s) recuperado(s)
+        return pagamentos;
+    }
+    
+    
     @Override
     public String obterSentencaInsert() {
-        return "insert into pessoa (cpf, nome, email) values (?, ?, ?);";
+        return "insert into pagamento (id, valor, datapagamento, contrato_id) values (default, ?, ?, ?);";
     }
 
     @Override
     public String obterSentencaUpdate() {
-        return "update pessoa set cpf = ?, nome = ?, email = ? where id = ?;";
+        return "update pagamento set valor = ?, datapagamento = ?, contrato_id where id = ?;";
     }
 
     @Override
     public String obterSentencaLocalizarPorId() {
-        return "select id, cpf, nome, email from pessoafisica where id = ?;";
+        return "SELECT * FROM pagamento WHERE id = ?;";
     }
 
     @Override
     public String obterSentencaLocalizarTodos() {
-        return "select id, cpf, nome, email from pessoafisica where excluido = false;";
+        return "SELECT * FROM pagamento;";
     }
 
+    private String obterDeclaracaoSelecionarPagamentosPorContrato() {
+        return "SELECT * FROM pagamento WHERE contrato_id = ?;";
+    }
     @Override
-    public void montarDeclaracao(PreparedStatement pstmt, Pessoa e) {
+    public void montarDeclaracao(PreparedStatement pstmt, Pagamento e) {
         try {
-            pstmt.setLong(1, e.getCpf());
-            pstmt.setString(2, e.getNome());
-            pstmt.setString(3, e.getEmail());
+            //update
+            pstmt.setBigDecimal(1, e.getValor());
+            //pstmt.setDate(2, e.getDataPagamento()); 
+            pstmt.setLong(3, e.getcontratoId());
+
 
             if (e.getId() != null && e.getId() != 0) {
-                pstmt.setLong(6, e.getId());
+                pstmt.setLong(4, e.getId());
             }
 
         } catch (Exception ex) {
@@ -62,25 +101,83 @@ public class PagamentoDao
     }
 
     /**
-     * Extrai um objeto PessoaFisica do resultado gerado pela consulta
+     * Extrai um objeto Pagamento do resultado gerado pela consulta
      *
      * @param resultSet Registro recuperado do banco de dados
      * @return PessoaFisica equivalente ao registro recebido
      */
     @Override
-    public Pessoa extrairObjeto(ResultSet resultSet) {
-        Pessoa pf = new Pessoa();
+    public Pagamento extrairObjeto(ResultSet resultSet) {
+        Pagamento pagamento = new Pagamento();
 
         try {
-            pf.setId(resultSet.getLong("id"));
-            pf.setCpf(resultSet.getLong("cpf"));
-            pf.setNome(resultSet.getString("nome"));
-            pf.setEmail(resultSet.getString("email"));
-
+            pagamento.setId(resultSet.getLong("id"));
+            pagamento.setValor(resultSet.getBigDecimal("Valor"));
+            pagamento.setDataPagamento(Util.convertDateToLocalDate(
+                    resultSet.getDate("datapagamento")));
+            pagamento.setcontratoId(resultSet.getLong("contrato_id"));
         } catch (SQLException ex) {
-            Logger.getLogger(PessoaDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PagamentoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return pf;
+        return pagamento;
     }
+    public List<Pagamento> extrairObjetos(ResultSet resultSet) {
+
+        // Cria referência para inserção das comentarios a serem mapeados
+        ArrayList<Pagamento> pagamentos = new ArrayList<>();
+
+        // Tenta...
+        try {
+            // ... entquanto houver registros a serem processados
+            while (resultSet.next()) {
+                // Insere o comentario na lista de comentarios recuperados
+                pagamentos.add(extrairObjeto(resultSet));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PagamentoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // Devolve a lista de comentarios reconstituídos dos registros do banco 
+        // de dados
+        return pagamentos;
+    }
+
+//    @Override
+//    public Long salvar(Pagamento e) {
+//        // Novo registro: nenhum objeto localizado para atualização
+//        if (localizarPorId(e.getId()) == null) {
+//
+//            // try-with-resources libera recurso ao final do bloco (PreparedStatement)
+//            try (PreparedStatement pstmt
+//                    = ConexaoBd.getConexao().prepareStatement(
+//                            // Sentença SQL para inserção de registros
+//                            obterSentencaInsert())) {
+//
+//                // Prepara a declaração com os dados do objeto passado
+//                pstmt.setLong(1, e.getId());
+//                pstmt.setBigDecimal(2, e.getValor());
+//               
+//                
+//                pstmt.setLong(4, e.getcontratoId());
+//
+//                // Executa o comando SQL
+//                pstmt.executeUpdate();
+//
+//            } catch (Exception ex) {
+//                ex.printStackTrace();
+//            }
+//
+//        } else {
+//            // Mesma operação de atualização da superclasse.
+//            // Como a id terá um valor, sempre executará a atualização
+//            // nesta chamada.
+//            super.salvar(e);
+//        }
+//
+//        // Cast requerido para adaptação do tipo pois, mesmo que a id seja sempre
+//        // longa, esse trecho de código não reconhece tal tipo implicitamente
+//        return e.getId();
+//    }
+    
 }

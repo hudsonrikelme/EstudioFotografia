@@ -1,19 +1,20 @@
 package br.edu.ifnmg.estudiofotografia.entity;
 
 import java.math.BigDecimal;
-import java.time.Duration;
+//import java.time.Duration;
 import java.time.LocalDateTime;
 
 /**
  *
  * @author Rikelme, Artur e Dijalmir
  */
-public class TipoProduto {
+public class TipoProduto 
+                extends Entidade{
 
     //<editor-fold defaultstate="collapsed" desc="Atributos">
     private Integer index; // identificador do produto
     private String nome = new String();
-    private Duration duracao;
+    private Double duracao;
     private BigDecimal valor;
 
 //</editor-fold>
@@ -31,18 +32,21 @@ public class TipoProduto {
             switch (index) {
                 case 1:
                     this.nome = "Cobertura de Casamento";
-                    this.duracao = Duration.ofHours(4);
+//                    this.duracao = Duration.ofHours(4);
+                    this.duracao = 4.0;
                     this.valor = new BigDecimal("1000");
                     break;
                 case 2:
                     this.nome = "Ensaio em Estudio";
-                    this.duracao = Duration.ofMinutes(90);
+//                    this.duracao = Duration.ofMinutes(90);
+                    this.duracao = 4.0;
                     this.valor = new BigDecimal("800");
 
                     break;
                 case 3:
                     this.nome = "Ensaio Externo";
-                    this.duracao = Duration.ofMinutes(60);
+//                    this.duracao = Duration.ofMinutes(60);
+                    this.duracao = 4.0;
                     this.valor = new BigDecimal("600");
                     break;
                 default:
@@ -72,11 +76,11 @@ public class TipoProduto {
         this.nome = nome;
     }
 
-    public Duration getDuracao() {
+    public Double getDuracao() {
         return duracao;
     }
 
-    public void setDuracao(Duration duracao) {
+    public void setDuracao(Double duracao) {
         this.duracao = duracao;
     }
 

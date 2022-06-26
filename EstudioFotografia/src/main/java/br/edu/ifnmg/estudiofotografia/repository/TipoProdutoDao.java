@@ -1,6 +1,8 @@
 package br.edu.ifnmg.estudiofotografia.repository;
 
 import br.edu.ifnmg.estudiofotografia.entity.Pessoa;
+import br.edu.ifnmg.estudiofotografia.entity.TipoProduto;
+import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,45 +14,43 @@ import java.util.logging.Logger;
  * @author Rikelme
  */
 public class TipoProdutoDao 
-            extends Dao<Pessoa, Long>{
+            extends Dao<TipoProduto, Long>{
     /*
-    CREATE TABLE `pessoa` (
+    CREATE TABLE `tipoproduto` (
         `id` bigint(20) NOT NULL AUTO_INCREMENT,
-        `cpf` bigint(20) NOT NULL,
         `nome` varchar(50) NOT NULL,
-        `email` varchar(255) DEFAULT NULL,
-        PRIMARY KEY (`id`),
-        UNIQUE KEY `cpf` (`cpf`),
-        UNIQUE KEY `email` (`email`)
+        `duracao` double NOT NULL,
+        `valor` decimal NOT NULL,
+        PRIMARY KEY (`id`)
     ) engine=Innodb;
 -- */
 //    
     @Override
     public String obterSentencaInsert() {
-        return "insert into pessoa (cpf, nome, email) values (?, ?, ?);";
+        return "insert into tipoproduto (nome, duracao, valor) values (?, ?, ?);";
     }
 
     @Override
     public String obterSentencaUpdate() {
-        return "update pessoa set cpf = ?, nome = ?, email = ? where id = ?;";
+        return "update tipoproduto set nome = ?, duracao = ?, valor = ? where id = ?;";
     }
 
     @Override
     public String obterSentencaLocalizarPorId() {
-        return "select id, cpf, nome, email from pessoafisica where id = ?;";
+        return "select id, nome, duracao, valor from tipoproduto where id = ?;";
     }
 
     @Override
     public String obterSentencaLocalizarTodos() {
-        return "select id, cpf, nome, email from pessoafisica where excluido = false;";
+        return "select id, nome, duracao, valor from tipoproduto;";
     }
 
     @Override
-    public void montarDeclaracao(PreparedStatement pstmt, Pessoa e) {
+    public void montarDeclaracao(PreparedStatement pstmt, TipoProduto e) {
         try {
-            pstmt.setLong(1, e.getCpf());
-            pstmt.setString(2, e.getNome());
-            pstmt.setString(3, e.getEmail());
+            pstmt.setString(1, e.getNome());
+            pstmt.setDouble(2, e.getDuracao());
+            pstmt.setBigDecimal(3, e.getValor());
 
             if (e.getId() != null && e.getId() != 0) {
                 pstmt.setLong(6, e.getId());
@@ -68,19 +68,19 @@ public class TipoProdutoDao
      * @return PessoaFisica equivalente ao registro recebido
      */
     @Override
-    public Pessoa extrairObjeto(ResultSet resultSet) {
-        Pessoa pf = new Pessoa();
+    public TipoProduto extrairObjeto(ResultSet resultSet) {
+        TipoProduto tp = new TipoProduto();
 
         try {
-            pf.setId(resultSet.getLong("id"));
-            pf.setCpf(resultSet.getLong("cpf"));
-            pf.setNome(resultSet.getString("nome"));
-            pf.setEmail(resultSet.getString("email"));
+            tp.setId(resultSet.getLong("id"));
+            tp.setNome(resultSet.getString("nome"));
+            tp.setDuracao(resultSet.getDouble("duracao"));
+            tp.setValor(resultSet.getBigDecimal("valor"));
 
         } catch (SQLException ex) {
-            Logger.getLogger(PessoaDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TipoProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return pf;
+        return tp;
     }
 }

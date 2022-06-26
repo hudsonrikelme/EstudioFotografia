@@ -6,24 +6,28 @@ import java.util.ArrayList;
 import java.util.List;
 /**
  *
- * @author Rikelme, Artur e Dijalmir
+ * @author Rikelme
  */
-public class Cliente extends Pessoa {
+public class Cliente 
+        extends Pessoa {
     
     //<editor-fold defaultstate="collapsed" desc="Atributos">
     private List<Contrato> contratos = new ArrayList<>();
+//    private String nome;
+//    private String senha;
+//    private String email;
+//    private Long cpf;
 
 //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Construtores">
     public Cliente() {
     }
-
     public Cliente(Pessoa p1) {
-
         super.setNome(p1.getNome());
         super.setEmail(p1.getEmail());
         super.setCpf(p1.getCpf());
-
+        super.setSenha(p1.getSenha());
+        
     }
 
     //</editor-fold>
@@ -52,7 +56,8 @@ public class Cliente extends Pessoa {
         return ("Nome do cliente: " + super.getNome() + "\n"
                 + "CPF: " + super.getCpf() + "\n"
                 + "Email: " + super.getEmail() + "\n"
-                + "Numero de Cotratos: " + this.numeroDeContratos()+"\n");
+                + "Senha: " + super.getSenha() + "\n"
+                + "Numero de Contratos: " + this.numeroDeContratos()+"\n");
     }
 //</editor-fold>
 
