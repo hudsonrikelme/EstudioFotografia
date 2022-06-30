@@ -19,7 +19,6 @@ public class ClienteDao
         `cpf` bigint(20) NOT NULL,
         `nome` varchar(50) NOT NULL,
         `email` varchar(255) DEFAULT NULL,
-        `senha` varchar(50) NOT NULL,
         PRIMARY KEY (`id`),
         UNIQUE KEY `cpf` (`cpf`),
         UNIQUE KEY `email` (`email`)
@@ -28,22 +27,22 @@ public class ClienteDao
 //    
     @Override
     public String obterSentencaInsert() {
-        return "insert into cliente (id, cpf, nome, email, senha) values (default, ?, ?, ?, ?);";
+        return "insert into cliente (id, cpf, nome, email) values (default, ?, ?, ?);";
     }
 
     @Override
     public String obterSentencaUpdate() {
-        return "update cliente set cpf = ?, nome = ?, email = ?, senha = ? where id = ?;";
+        return "update cliente set cpf = ?, nome = ?, email = ? where id = ?;";
     }
 
     @Override
     public String obterSentencaLocalizarPorId() {
-        return "select id, cpf, nome, email, senha from cliente where id = ?;";
+        return "select id, cpf, nome, email from cliente where id = ?;";
     }
 
     @Override
     public String obterSentencaLocalizarTodos() {
-        return "select id, cpf, nome, email, senha from cliente;";
+        return "select id, cpf, nome, email from cliente;";
     }
 
     @Override
@@ -52,7 +51,6 @@ public class ClienteDao
             pstmt.setLong(1, e.getCpf());
             pstmt.setString(2, e.getNome());
             pstmt.setString(3, e.getEmail());
-            pstmt.setString(4, e.getSenha());
 
             if (e.getId() != null && e.getId() != 0) {
                 pstmt.setLong(5, e.getId());
@@ -78,7 +76,6 @@ public class ClienteDao
             cliente.setCpf(resultSet.getLong("cpf"));
             cliente.setNome(resultSet.getString("nome"));
             cliente.setEmail(resultSet.getString("email"));
-            cliente.setSenha(resultSet.getString("senha"));
 
         } catch (SQLException ex) {
             Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);

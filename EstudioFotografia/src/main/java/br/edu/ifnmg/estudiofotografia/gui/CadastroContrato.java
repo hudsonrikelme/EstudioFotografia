@@ -1,16 +1,37 @@
 package br.edu.ifnmg.estudiofotografia.gui;
 
+import br.edu.ifnmg.estudiofotografia.entity.Cliente;
+import br.edu.ifnmg.estudiofotografia.entity.TipoProduto;
+import br.edu.ifnmg.estudiofotografia.repository.ClienteDao;
+import br.edu.ifnmg.estudiofotografia.repository.TipoProdutoDao;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author Rikelme
  */
 public class CadastroContrato extends javax.swing.JInternalFrame {
     private static CadastroContrato instance;
+    private List<Cliente> todosClientes;
+    private List<TipoProduto> todosTiposProdutos;
     /**
      * Creates new form CadastroContrato
      */
     public CadastroContrato() {
         initComponents();
+        
+        todosClientes = new ClienteDao().localizarTodos();
+        DefaultComboBoxModel<Cliente> comboBoxModel
+                = new DefaultComboBoxModel<>();
+        comboBoxModel.addAll(todosClientes);
+        cbCliente.setModel(comboBoxModel);
+        
+        todosTiposProdutos = new TipoProdutoDao().localizarTodos();
+        DefaultComboBoxModel<TipoProduto> comboBoxModel1 
+                = new DefaultComboBoxModel<>();
+        comboBoxModel1.addAll(todosTiposProdutos);
+        cbTipoProduto.setModel(comboBoxModel1);    
     }
     public static CadastroContrato getInstance(){
         if(instance == null){
@@ -28,20 +49,94 @@ public class CadastroContrato extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlCadastroContrato = new javax.swing.JPanel();
+        btnCadastrar = new javax.swing.JButton();
+        cbCliente = new javax.swing.JComboBox<>();
+        lblCliente = new javax.swing.JLabel();
+        lblTipoProduto = new javax.swing.JLabel();
+        cbTipoProduto = new javax.swing.JComboBox<>();
+        lblDataEvento = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+
         setClosable(true);
         setMaximizable(true);
         setResizable(true);
         setTitle("Cadastro Contrato");
 
+        btnCadastrar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        btnCadastrar.setText("Cadastrar");
+
+        cbCliente.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+
+        lblCliente.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        lblCliente.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCliente.setText("Cliente:");
+
+        lblTipoProduto.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        lblTipoProduto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTipoProduto.setText("Tipo de Produto:");
+
+        cbTipoProduto.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+
+        lblDataEvento.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        lblDataEvento.setText("Data do Evento:");
+
+        jDateChooser1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+
+        javax.swing.GroupLayout pnlCadastroContratoLayout = new javax.swing.GroupLayout(pnlCadastroContrato);
+        pnlCadastroContrato.setLayout(pnlCadastroContratoLayout);
+        pnlCadastroContratoLayout.setHorizontalGroup(
+            pnlCadastroContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCadastroContratoLayout.createSequentialGroup()
+                .addGroup(pnlCadastroContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlCadastroContratoLayout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(lblCliente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlCadastroContratoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(pnlCadastroContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblDataEvento)
+                            .addComponent(lblTipoProduto))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlCadastroContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbTipoProduto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroContratoLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnCadastrar)))
+                .addContainerGap())
+        );
+        pnlCadastroContratoLayout.setVerticalGroup(
+            pnlCadastroContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroContratoLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(pnlCadastroContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCliente))
+                .addGap(18, 18, 18)
+                .addGroup(pnlCadastroContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTipoProduto)
+                    .addComponent(cbTipoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlCadastroContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblDataEvento)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addComponent(btnCadastrar)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addComponent(pnlCadastroContrato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addComponent(pnlCadastroContrato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -49,5 +144,13 @@ public class CadastroContrato extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JComboBox<Cliente> cbCliente;
+    private javax.swing.JComboBox<TipoProduto> cbTipoProduto;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JLabel lblCliente;
+    private javax.swing.JLabel lblDataEvento;
+    private javax.swing.JLabel lblTipoProduto;
+    private javax.swing.JPanel pnlCadastroContrato;
     // End of variables declaration//GEN-END:variables
 }

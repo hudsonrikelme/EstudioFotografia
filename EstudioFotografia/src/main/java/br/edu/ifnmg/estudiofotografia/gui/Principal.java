@@ -1,5 +1,6 @@
 package br.edu.ifnmg.estudiofotografia.gui;
 
+import br.edu.ifnmg.estudiofotografia.entity.Usuario;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,8 +15,12 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
-    public Principal() {
+    public Principal(Usuario usuario) {
         initComponents();
+        if (!usuario.getAdministrador()) {
+            mnuCadastroUsuario.setEnabled(false);
+        }
+        
     }
 
     /**
@@ -33,8 +38,10 @@ public class Principal extends javax.swing.JFrame {
         mnuArquivo = new javax.swing.JMenu();
         mnuArquivoSair = new javax.swing.JMenuItem();
         mnuCadastro = new javax.swing.JMenu();
-        mnuCadastroColaborador = new javax.swing.JMenuItem();
+        mnuCadastroUsuario = new javax.swing.JMenuItem();
+        mnuCadastroCliente = new javax.swing.JMenuItem();
         mnuCadastroContrato = new javax.swing.JMenuItem();
+        mnuCadastroPagamento = new javax.swing.JMenuItem();
         mnuAjuda = new javax.swing.JMenu();
         mnuAjudaSobre = new javax.swing.JMenuItem();
 
@@ -67,14 +74,27 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(mnuArquivo);
 
         mnuCadastro.setText("Cadastro");
-
-        mnuCadastroColaborador.setText("Colaborador");
-        mnuCadastroColaborador.addActionListener(new java.awt.event.ActionListener() {
+        mnuCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuCadastroColaboradorActionPerformed(evt);
+                mnuCadastroActionPerformed(evt);
             }
         });
-        mnuCadastro.add(mnuCadastroColaborador);
+
+        mnuCadastroUsuario.setText("Usuario");
+        mnuCadastroUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuCadastroUsuarioActionPerformed(evt);
+            }
+        });
+        mnuCadastro.add(mnuCadastroUsuario);
+
+        mnuCadastroCliente.setText("Cliente");
+        mnuCadastroCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuCadastroClienteActionPerformed(evt);
+            }
+        });
+        mnuCadastro.add(mnuCadastroCliente);
 
         mnuCadastroContrato.setText("Contrato");
         mnuCadastroContrato.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +103,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         mnuCadastro.add(mnuCadastroContrato);
+
+        mnuCadastroPagamento.setText("Pagamento");
+        mnuCadastroPagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuCadastroPagamentoActionPerformed(evt);
+            }
+        });
+        mnuCadastro.add(mnuCadastroPagamento);
 
         jMenuBar1.add(mnuCadastro);
 
@@ -114,12 +142,6 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mnuCadastroColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroColaboradorActionPerformed
-        // TODO add your handling code here:
-        CadastroColaborador janela = CadastroColaborador.getInstance();
-        anexarJanela(janela);
-    }//GEN-LAST:event_mnuCadastroColaboradorActionPerformed
-
     private void mnuCadastroContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroContratoActionPerformed
         CadastroContrato janela = CadastroContrato.getInstance();
         anexarJanela(janela);
@@ -133,6 +155,25 @@ public class Principal extends javax.swing.JFrame {
     private void mnuArquivoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuArquivoSairActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_mnuArquivoSairActionPerformed
+
+    private void mnuCadastroPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroPagamentoActionPerformed
+        CadastroPagamento janela = CadastroPagamento.getInstance();
+        anexarJanela(janela);
+    }//GEN-LAST:event_mnuCadastroPagamentoActionPerformed
+
+    private void mnuCadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroClienteActionPerformed
+        CadastroCliente janela = CadastroCliente.getInstance();
+        anexarJanela(janela);
+    }//GEN-LAST:event_mnuCadastroClienteActionPerformed
+
+    private void mnuCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mnuCadastroActionPerformed
+
+    private void mnuCadastroUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroUsuarioActionPerformed
+       
+        
+    }//GEN-LAST:event_mnuCadastroUsuarioActionPerformed
 
     private void anexarJanela(JInternalFrame janela) {
         if(!janela.isVisible()){
@@ -150,37 +191,37 @@ public class Principal extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Principal().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Principal().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane dskPrincipal;
@@ -191,7 +232,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu mnuArquivo;
     private javax.swing.JMenuItem mnuArquivoSair;
     private javax.swing.JMenu mnuCadastro;
-    private javax.swing.JMenuItem mnuCadastroColaborador;
+    private javax.swing.JMenuItem mnuCadastroCliente;
     private javax.swing.JMenuItem mnuCadastroContrato;
+    private javax.swing.JMenuItem mnuCadastroPagamento;
+    private javax.swing.JMenuItem mnuCadastroUsuario;
     // End of variables declaration//GEN-END:variables
 }

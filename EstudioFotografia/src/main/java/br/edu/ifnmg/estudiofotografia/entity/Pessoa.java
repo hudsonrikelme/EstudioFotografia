@@ -14,7 +14,6 @@ public class Pessoa
     private String nome;
     private Long cpf;
     private String email;
-    private String senha;
 //</editor-fold>
 
     
@@ -23,11 +22,10 @@ public class Pessoa
     public Pessoa() {
     }
 
-    public Pessoa(String nome, Long cpf, String email, String senha) {
+    public Pessoa(String nome, Long cpf, String email) {
         super(cpf);
         this.nome = nome;
         this.email = email;
-        this.senha = senha;
     }
 
     
@@ -71,17 +69,6 @@ public class Pessoa
         this.email = email;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-    
-    
-    
-    
 //</editor-fold>
 
     
@@ -94,7 +81,6 @@ public class Pessoa
                 + "cpf=" + cpf
                 + ", nome=" + nome
                 + ", email=" + email
-                + ", senha=" + senha
                 + '}';
     }
     

@@ -5,11 +5,13 @@ import br.edu.ifnmg.estudiofotografia.entity.Contrato;
 import br.edu.ifnmg.estudiofotografia.entity.Pagamento;
 import br.edu.ifnmg.estudiofotografia.entity.TipoProduto;
 import br.edu.ifnmg.estudiofotografia.entity.Pessoa;
+import br.edu.ifnmg.estudiofotografia.entity.Usuario;
 import br.edu.ifnmg.estudiofotografia.repository.ClienteDao;
 import br.edu.ifnmg.estudiofotografia.repository.ContratoDao;
 import br.edu.ifnmg.estudiofotografia.repository.PagamentoDao;
 import br.edu.ifnmg.estudiofotografia.repository.PessoaDao;
 import br.edu.ifnmg.estudiofotografia.repository.TipoProdutoDao;
+import br.edu.ifnmg.estudiofotografia.repository.UsuarioDao;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -32,25 +34,22 @@ public class Program {
         p1.setNome("Ana");
         p1.setCpf(74193712028L);
         p1.setEmail("ana@mail.com");
-        p1.setSenha("ana123");
 
         //new PessoaDao().salvar(p1);
 //        Long id = pessoaDao.salvar(p1);
 //        p1.setId(id);
 
         p2.setNome("Carla Helem");
-        p2.setCpf(22334456478L);
+        p2.setCpf(69089421041L);
         p2.setEmail("carla@mail.com");
-        p2.setSenha("carla123");
 
 
 //        id = pessoaDao.salvar(p2);
 //        p2.setId(id);
 
         p3.setNome("Pedro");
-        p3.setCpf(33445546871L);
+        p3.setCpf(34534095074L);
         p3.setEmail("pedro@mail.com");
-        p3.setSenha("ana123");
 
 
 //        id = pessoaDao.salvar(p3);
@@ -58,9 +57,8 @@ public class Program {
         //new PessoaDao().salvar(p3);
 
         p4.setNome("Mario");
-        p4.setCpf(44556654897L);
+        p4.setCpf(79685316082L);
         p4.setEmail("mario@mail.com");
-        p4.setSenha("mario123");
 
 
 //        id = pessoaDao.salvar(p4);
@@ -68,9 +66,9 @@ public class Program {
 
         //new PessoaDao().salvar(p4);
         p5.setNome("João");
-        p5.setCpf(55667745679L);
+        p5.setCpf(89312377078L);
         p5.setEmail("João@mail.com");
-        p5.setSenha("joao123");
+
 
 
 //        id = pessoaDao.salvar(p5);
@@ -114,12 +112,12 @@ public class Program {
         TipoProduto prdt2 = new TipoProduto(2);
         TipoProduto prdt3 = new TipoProduto(3);
         
-//        id = tipoProdutoDao.salvar(prdt1);
-//        prdt1.setId(id);
-//        id = tipoProdutoDao.salvar(prdt2);
-//        prdt2.setId(id);
-//        id = tipoProdutoDao.salvar(prdt3);
-//        prdt3.setId(id);
+        Long id = tipoProdutoDao.salvar(prdt1);
+        prdt1.setId(id);
+        id = tipoProdutoDao.salvar(prdt2);
+        prdt2.setId(id);
+        id = tipoProdutoDao.salvar(prdt3);
+        prdt3.setId(id);
 
 //        System.out.println("========Definição de 3 Produtos========");
 //        System.out.println(prdt1);
@@ -168,14 +166,32 @@ public class Program {
         System.out.println(contrato1);
 
 //</editor-fold>
-        PagamentoDao pagamentodao = new PagamentoDao();
-        Pagamento pagamento = new Pagamento();
-        pagamento.setId(1L);
-        pagamento.setDataPagamento(LocalDate.of(2022, 06, 24));
-        pagamento.setValor(BigDecimal.valueOf(150.0) );
+//        PagamentoDao pagamentodao = new PagamentoDao();
+//        Pagamento pagamento = new Pagamento();
+//        pagamento.setId(1L);
+//        pagamento.setDataPagamento(LocalDate.of(2022, 06, 24));
+//        pagamento.setValor(BigDecimal.valueOf(150.0) );
 //        pagamento.setcontratoId(1L);
-        Long id = pagamentodao.salvar(pagamento);
-        pagamento.setId(id);
+//        Long id = pagamentodao.salvar(pagamento);
+//        pagamento.setId(id);
+        
+        
+        
+        //<editor-fold defaultstate="collapsed" desc="Usuario">
+//        UsuarioDao usuariodao = new UsuarioDao();
+//        Usuario usuario = new Usuario();
+//        usuario.setAdministrador(Boolean.TRUE);
+//        usuario.setNomeSistema("hudson");
+//        usuario.setSenha("12345678");
+//        usuariodao.salvar(usuario);
+//        usuario.setId(2l);
+        
+        
+        
+        
+        
+        
+//</editor-fold>
 
 
     }

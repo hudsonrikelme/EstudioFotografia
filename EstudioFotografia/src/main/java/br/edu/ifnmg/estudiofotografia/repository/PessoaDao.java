@@ -19,7 +19,6 @@ public class PessoaDao
         `cpf` bigint(20) NOT NULL,
         `nome` varchar(50) NOT NULL,
         `email` varchar(255) DEFAULT NULL,
-        `senha` varchar(50) NOT NULL,
         PRIMARY KEY (`id`),
         UNIQUE KEY `cpf` (`cpf`),
         UNIQUE KEY `email` (`email`)
@@ -28,22 +27,22 @@ public class PessoaDao
 //    
     @Override
     public String obterSentencaInsert() {
-        return "insert into pessoa (id, cpf, nome, email, senha) values (default, ?, ?, ?, ?);";
+        return "insert into pessoa (id, cpf, nome, email) values (default, ?, ?, ?);";
     }
 
     @Override
     public String obterSentencaUpdate() {
-        return "update pessoa set cpf = ?, nome = ?, email = ?, senha = ? where id = ?;";
+        return "update pessoa set cpf = ?, nome = ?, email = ? where id = ?;";
     }
 
     @Override
     public String obterSentencaLocalizarPorId() {
-        return "select id, cpf, nome, email, senha from pessoa where id = ?;";
+        return "select id, cpf, nome, email from pessoa where id = ?;";
     }
 
     @Override
     public String obterSentencaLocalizarTodos() {
-        return "select id, cpf, nome, email, senha from pessoa;";
+        return "select id, cpf, nome, email from pessoa;";
         //return "select id, cpf, nome, email from pessoa where excluido = false;";
     }
 
@@ -53,7 +52,6 @@ public class PessoaDao
             pstmt.setLong(1, e.getCpf());
             pstmt.setString(2, e.getNome());
             pstmt.setString(3, e.getEmail());
-            pstmt.setString(4, e.getSenha());
 
             if (e.getId() != null && e.getId() != 0) {
                 pstmt.setLong(5, e.getId());
@@ -79,7 +77,6 @@ public class PessoaDao
             pf.setCpf(resultSet.getLong("cpf"));
             pf.setNome(resultSet.getString("nome"));
             pf.setEmail(resultSet.getString("email"));
-            pf.setSenha(resultSet.getString("senha"));
         } catch (SQLException ex) {
             Logger.getLogger(PessoaDao.class.getName()).log(Level.SEVERE, null, ex);
         }
