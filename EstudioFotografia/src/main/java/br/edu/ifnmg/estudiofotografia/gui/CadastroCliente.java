@@ -55,6 +55,11 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
 
         tfCadastroClienteEmail.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
+        try {
+            ftfCadastroClienteCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         ftfCadastroClienteCpf.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
         btnCadastrar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N

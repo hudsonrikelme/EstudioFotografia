@@ -1,8 +1,10 @@
 package br.edu.ifnmg.estudiofotografia.gui;
 
 import br.edu.ifnmg.estudiofotografia.entity.Cliente;
+import br.edu.ifnmg.estudiofotografia.entity.Contrato;
 import br.edu.ifnmg.estudiofotografia.entity.TipoProduto;
 import br.edu.ifnmg.estudiofotografia.repository.ClienteDao;
+import br.edu.ifnmg.estudiofotografia.repository.ContratoDao;
 import br.edu.ifnmg.estudiofotografia.repository.TipoProdutoDao;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -65,6 +67,11 @@ public class CadastroContrato extends javax.swing.JInternalFrame {
 
         btnCadastrar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         cbCliente.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
@@ -141,6 +148,16 @@ public class CadastroContrato extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        Contrato contrato = new Contrato();
+        contrato.setCliente(cbCliente.getItemAt(WIDTH));
+        contrato.setTipoproduto(cbTipoProduto.getItemAt(WIDTH));
+        
+        ContratoDao contratodao = new ContratoDao();
+        Long id = contratodao.salvar(contrato);
+        contrato.setId(id);
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

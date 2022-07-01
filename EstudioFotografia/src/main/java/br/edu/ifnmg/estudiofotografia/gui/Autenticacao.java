@@ -99,6 +99,7 @@ public class Autenticacao extends javax.swing.JFrame {
             Principal principal = new Principal(u);
  
             principal.setVisible(true);
+            dispose();
             
         } else {
             JOptionPane.showMessageDialog(null, "Acesso negado");

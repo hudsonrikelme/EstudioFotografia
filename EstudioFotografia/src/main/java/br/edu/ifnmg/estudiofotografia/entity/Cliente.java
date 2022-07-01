@@ -48,10 +48,10 @@ public class Cliente
     //<editor-fold defaultstate="collapsed" desc="To_string">
     @Override
     public String toString() {
-        return ("Nome do cliente: " + super.getNome() + "\n"
-                + "CPF: " + super.getCpf() + "\n"
-                + "Email: " + super.getEmail() + "\n"
-                + "Numero de Contratos: " + this.numeroDeContratos()+"\n");
+        return ( super.getNome() + "\n"
+                + "     CPF: " + super.getCpf() + "\n"
+                + "     Email: " + super.getEmail() + "\n"
+                + "     Numero de Contratos: " + this.numeroDeContratos()+"\n");
     }
 //</editor-fold>
 

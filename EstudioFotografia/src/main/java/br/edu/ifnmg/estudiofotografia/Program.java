@@ -35,7 +35,7 @@ public class Program {
         p1.setCpf(74193712028L);
         p1.setEmail("ana@mail.com");
 
-        //new PessoaDao().salvar(p1);
+//        new PessoaDao().salvar(p1);
 //        Long id = pessoaDao.salvar(p1);
 //        p1.setId(id);
 
@@ -54,7 +54,7 @@ public class Program {
 
 //        id = pessoaDao.salvar(p3);
 //        p3.setId(id);
-        //new PessoaDao().salvar(p3);
+//        new PessoaDao().salvar(p3);
 
         p4.setNome("Mario");
         p4.setCpf(79685316082L);
@@ -112,12 +112,12 @@ public class Program {
         TipoProduto prdt2 = new TipoProduto(2);
         TipoProduto prdt3 = new TipoProduto(3);
         
-        Long id = tipoProdutoDao.salvar(prdt1);
-        prdt1.setId(id);
-        id = tipoProdutoDao.salvar(prdt2);
-        prdt2.setId(id);
-        id = tipoProdutoDao.salvar(prdt3);
-        prdt3.setId(id);
+//        Long id = tipoProdutoDao.salvar(prdt1);
+//        prdt1.setId(id);
+//        id = tipoProdutoDao.salvar(prdt2);
+//        prdt2.setId(id);
+//        id = tipoProdutoDao.salvar(prdt3);
+//        prdt3.setId(id);
 
 //        System.out.println("========Definição de 3 Produtos========");
 //        System.out.println(prdt1);
@@ -152,12 +152,12 @@ public class Program {
         contrato1.setTipoproduto(prdt3);
         contrato1.setCliente(cliente1);
         contrato1.setDataEvento(LocalDate.of(2022, 05, 25).atTime(23, 40, 46));
-        contrato1.setCliente_id(1L);
+        contrato1.setCliente_id(cliente1.getId());
         contrato1.setTipoproduto(prdt1);
-        contrato1.setTipoproduto_id(1L);
+        contrato1.setTipoproduto_id(prdt1.getId());
         ContratoDao contratodao = new ContratoDao();
-//        id = contratodao.salvar(contrato1);
-//        contrato1.setId(id);
+        Long id = contratodao.salvar(contrato1);
+        contrato1.setId(id);
        
 //contrato1.setDataDoEvento(LocalDateTime.of(2022, 9, 3, 18, 30));
 
@@ -170,21 +170,40 @@ public class Program {
 //        Pagamento pagamento = new Pagamento();
 //        pagamento.setId(1L);
 //        pagamento.setDataPagamento(LocalDate.of(2022, 06, 24));
-//        pagamento.setValor(BigDecimal.valueOf(150.0) );
+//        pagamento.setValor(BigDecimal.valueOf(1500.0) );
 //        pagamento.setcontratoId(1L);
-//        Long id = pagamentodao.salvar(pagamento);
+//        pagamentodao.salvar(pagamento);
 //        pagamento.setId(id);
         
         
         
         //<editor-fold defaultstate="collapsed" desc="Usuario">
+        
+//        Usuario u = new Usuario();
+//        u.setNomeSistema("hudsonrikelme");
+//        u.setSenha("12345678");
+//        u.setAdministrador(Boolean.TRUE);
+
+//        Long novaId = new UsuarioDao().salvar(u);
+//        System.out.println(">> " + novaId);
+
+//        Usuario recuperado = new UsuarioDao().autenticar(u);
+//        
+//        if(recuperado != null) {
+//            System.out.println("Usuário autêntico!");
+//        } else {
+//            System.out.println("Acesso não autorizado.");
+//        }
+        
+        
+        
 //        UsuarioDao usuariodao = new UsuarioDao();
 //        Usuario usuario = new Usuario();
-//        usuario.setAdministrador(Boolean.TRUE);
-//        usuario.setNomeSistema("hudson");
+//        usuario.setAdministrador(Boolean.FALSE);
+//        usuario.setNomeSistema("secretario");
 //        usuario.setSenha("12345678");
 //        usuariodao.salvar(usuario);
-//        usuario.setId(2l);
+//        usuario.setId(5l);
         
         
         

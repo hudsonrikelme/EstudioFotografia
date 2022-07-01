@@ -98,9 +98,10 @@ public class TipoProduto
     
         @Override
     public String toString() {
-        return("Nome do Produto: "+ nome+"\n"
-                + "Duração: "+duracao+"\n"
-                + "Valor: "+valor+"\n");
+        return( nome
+//                "Nome do Produto: "+ nome+"\n"
+                + "    Duração: "+duracao+"h"
+                + "    Valor: R$"+valor+",00");
     }
     
     

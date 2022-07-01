@@ -136,7 +136,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dskPrincipal)
+            .addComponent(dskPrincipal, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -153,7 +153,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuAjudaSobreActionPerformed
 
     private void mnuArquivoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuArquivoSairActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_mnuArquivoSairActionPerformed
 
     private void mnuCadastroPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroPagamentoActionPerformed
@@ -171,7 +171,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuCadastroActionPerformed
 
     private void mnuCadastroUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroUsuarioActionPerformed
-       
+        CadastroUsuario janela = CadastroUsuario.getInstance();
+        anexarJanela(janela);
         
     }//GEN-LAST:event_mnuCadastroUsuarioActionPerformed
 

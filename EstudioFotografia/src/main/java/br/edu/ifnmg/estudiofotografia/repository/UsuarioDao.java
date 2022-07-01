@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 public class UsuarioDao
         extends Dao<Usuario, Long> {
     
-    private static final String SALT = "1FnM6";
+    private static final String SALT = "P00estudiofotografi4";
 
     @Override
     public String obterSentencaInsert() {
@@ -86,7 +86,8 @@ public class UsuarioDao
 
         // Validação de usuario
         try ( PreparedStatement preparedStatement
-                = ConexaoBd.getConexao().prepareStatement("select * from usuario where nomesistema = '?' and senha = md5(concat('" + SALT + "', ?));")) {
+            = ConexaoBd.getConexao().prepareStatement("select * from usuario where nomesistema = ? and senha = md5(concat('" + SALT + "', ?));"))
+        {
 
             preparedStatement.setString(1, usuario.getNomeSistema());
             preparedStatement.setString(2, usuario.getSenha());
