@@ -57,7 +57,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="cbTipoProduto" max="32767" attributes="0"/>
-                              <Component id="jDateChooser1" pref="225" max="32767" attributes="0"/>
+                              <Component id="dtDataEvento" pref="225" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -85,7 +85,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="lblDataEvento" min="-2" max="-2" attributes="0"/>
-                      <Component id="jDateChooser1" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="dtDataEvento" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Component id="btnCadastrar" min="-2" max="-2" attributes="0"/>
@@ -158,7 +158,7 @@
             <Property name="text" type="java.lang.String" value="Data do Evento:"/>
           </Properties>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+        <Component class="com.toedter.calendar.JDateChooser" name="dtDataEvento">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="18" style="0"/>

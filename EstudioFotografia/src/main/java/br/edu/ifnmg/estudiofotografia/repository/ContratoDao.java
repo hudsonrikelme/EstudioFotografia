@@ -29,7 +29,7 @@ public class ContratoDao
     /*
     CREATE TABLE `contrato` (
         `id` bigint(20) NOT NULL AUTO_INCREMENT,
-        `dataevento` datetime DEFAULT CURRENT_TIMESTAMP,
+        `dataevento` date DEFAULT NULL,
         `cliente_id` bigint(20) NOT NULL,
         `tipoproduto_id` bigint(20) NOT NULL,
         PRIMARY KEY (`id`),
@@ -60,13 +60,11 @@ public class ContratoDao
     @Override
     public void montarDeclaracao(PreparedStatement pstmt, Contrato e) {
         try {
-            ////dataevento??????????????????????????????????????
             pstmt.setObject(1, e.getDataEvento(),
                     java.sql.Types.DATE);
             pstmt.setLong(2, e.getCliente().getId());
             pstmt.setLong(3, e.getTipoproduto().getId());
 
-            //?????????????????????????????????????????????????????????????????????????????????????
             
             if (e.getId() != null && e.getId() != 0) {
                 pstmt.setLong(4, e.getId());
@@ -89,14 +87,14 @@ public class ContratoDao
 
         try {
             c.setId(resultSet.getLong("id"));
-            Long clienteId = resultSet.getLong("cliente_id");
-            c.setCliente((Cliente) new ClienteDao().localizarPorId(clienteId));
+            Long cliente_id = resultSet.getLong("cliente_id");
+            c.setCliente((Cliente) new ClienteDao().localizarPorId(cliente_id));
             //c.setCliente_id(resultSet.getLong("cliente_id"));
-            Long tipoprodutoId = resultSet.getLong("tipoproduto_id");
-            c.setTipoproduto(new TipoProdutoDao().localizarPorId(tipoprodutoId));
+            Long tipoproduto_id = resultSet.getLong("tipoproduto_id");
+            c.setTipoproduto(new TipoProdutoDao().localizarPorId(tipoproduto_id));
             //c.setTipoproduto_id(resultSet.getLong("tipoproduto_id"));
 
-            c.setDataEvento(Util.convertDateToLocalDateTime(
+            c.setDataEvento(Util.convertDateToLocalDate(
                     resultSet.getDate("dataevento")));
         } catch (SQLException ex) {
             Logger.getLogger(ContratoDao.class.getName()).log(Level.SEVERE, null, ex);

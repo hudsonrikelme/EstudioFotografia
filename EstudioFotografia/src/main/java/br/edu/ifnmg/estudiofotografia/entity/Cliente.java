@@ -49,9 +49,10 @@ public class Cliente
     @Override
     public String toString() {
         return ( super.getNome() + "\n"
-                + "     CPF: " + super.getCpf() + "\n"
-                + "     Email: " + super.getEmail() + "\n"
-                + "     Numero de Contratos: " + this.numeroDeContratos()+"\n");
+//                + "     CPF: " + super.getCpf() + "\n"
+//                + "     Email: " + super.getEmail() + "\n"
+//                + "     Numero de Contratos: " + this.numeroDeContratos()
+                +"\n");
     }
 //</editor-fold>
 

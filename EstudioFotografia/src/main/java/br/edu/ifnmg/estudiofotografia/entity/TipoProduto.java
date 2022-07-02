@@ -100,8 +100,9 @@ public class TipoProduto
     public String toString() {
         return( nome
 //                "Nome do Produto: "+ nome+"\n"
-                + "    Duração: "+duracao+"h"
-                + "    Valor: R$"+valor+",00");
+//                + "    Duração: "+duracao+"h"
+//                + "    Valor: R$"+valor+",00"
+                );
     }
     
     

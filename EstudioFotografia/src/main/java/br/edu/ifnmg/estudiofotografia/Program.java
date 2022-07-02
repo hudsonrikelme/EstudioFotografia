@@ -36,6 +36,7 @@ public class Program {
         p1.setEmail("ana@mail.com");
 
 //        new PessoaDao().salvar(p1);
+
 //        Long id = pessoaDao.salvar(p1);
 //        p1.setId(id);
 
@@ -112,7 +113,7 @@ public class Program {
         TipoProduto prdt2 = new TipoProduto(2);
         TipoProduto prdt3 = new TipoProduto(3);
         
-//        Long id = tipoProdutoDao.salvar(prdt1);
+//        id = tipoProdutoDao.salvar(prdt1);
 //        prdt1.setId(id);
 //        id = tipoProdutoDao.salvar(prdt2);
 //        prdt2.setId(id);
@@ -147,23 +148,21 @@ public class Program {
 //        new ClienteDao().salvar(cliente2);
 //</editor-fold>
 //<editor-fold defaultstate="collapsed" desc="Definição de 3 contratos">
-        Contrato contrato1 = new Contrato();
-        //contrato1.setDataEvento(LocalDate.of(2022, 06, 25));
-        contrato1.setTipoproduto(prdt3);
-        contrato1.setCliente(cliente1);
-        contrato1.setDataEvento(LocalDate.of(2022, 05, 25).atTime(23, 40, 46));
-        contrato1.setCliente_id(cliente1.getId());
-        contrato1.setTipoproduto(prdt1);
-        contrato1.setTipoproduto_id(prdt1.getId());
-        ContratoDao contratodao = new ContratoDao();
-        Long id = contratodao.salvar(contrato1);
-        contrato1.setId(id);
+//        Contrato contrato1 = new Contrato();
+//        contrato1.setTipoproduto(prdt1);
+//        contrato1.setCliente(cliente1);
+//        contrato1.setDataEvento(LocalDate.of(2022, 8, 25));
+//        contrato1.setCliente_id(1L);
+//        contrato1.setTipoproduto_id(1L);
+//        ContratoDao contratodao = new ContratoDao();
+//        contratodao.salvar(contrato1);
+        
        
 //contrato1.setDataDoEvento(LocalDateTime.of(2022, 9, 3, 18, 30));
 
-        System.out.println("========Definição de Contratos========");
-
-        System.out.println(contrato1);
+//        System.out.println("========Definição de Contratos========");
+//
+//        System.out.println(contrato1);
 
 //</editor-fold>
 //        PagamentoDao pagamentodao = new PagamentoDao();
@@ -197,18 +196,22 @@ public class Program {
         
         
         
-//        UsuarioDao usuariodao = new UsuarioDao();
-//        Usuario usuario = new Usuario();
+        UsuarioDao usuariodao = new UsuarioDao();
+        Usuario usuario = new Usuario();
+        
+        
+//        usuario.setAdministrador(Boolean.TRUE);
+//        usuario.setNomeSistema("proprietario");
+//        usuario.setSenha("12345678");
+//        usuariodao.salvar(usuario);
+//        usuario.setId(1l);
+        
+        
 //        usuario.setAdministrador(Boolean.FALSE);
 //        usuario.setNomeSistema("secretario");
 //        usuario.setSenha("12345678");
 //        usuariodao.salvar(usuario);
-//        usuario.setId(5l);
-        
-        
-        
-        
-        
+//        usuario.setId(2l);
         
 //</editor-fold>
 

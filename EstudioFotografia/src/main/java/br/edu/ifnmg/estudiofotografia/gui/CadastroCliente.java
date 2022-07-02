@@ -1,6 +1,12 @@
 
 package br.edu.ifnmg.estudiofotografia.gui;
 
+import br.edu.ifnmg.estudiofotografia.entity.Cliente;
+import br.edu.ifnmg.estudiofotografia.entity.Pessoa;
+import br.edu.ifnmg.estudiofotografia.repository.ClienteDao;
+import br.edu.ifnmg.estudiofotografia.repository.PessoaDao;
+import javax.swing.JFormattedTextField;
+
 /**
  *
  * @author Rikelme
@@ -64,6 +70,11 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
 
         btnCadastrar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,6 +118,27 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        Pessoa pessoa = new Pessoa();
+        PessoaDao pessoaDao = new PessoaDao();
+        //JFormattedTextField cpf = new JFormattedTextField();
+        //cpf.setValue(ftfCadastroClienteCpf);
+        
+        pessoa.setNome(tfCadastroClienteNome.getText());
+        Double valor = Double.parseDouble(ftfCadastroClienteCpf.getText());
+        pessoa.setCpf(valor.longValue());
+        pessoa.setEmail(tfCadastroClienteEmail.getText());
+        
+        Long id = pessoaDao.salvar(pessoa);
+        pessoa.setId(id);
+        
+        Cliente cliente = new Cliente(pessoa);
+        ClienteDao clientedao = new ClienteDao();
+        id = clientedao.salvar(cliente);
+        cliente.setId(id);
+        dispose();      
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

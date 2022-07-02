@@ -2,6 +2,7 @@ package br.edu.ifnmg.estudiofotografia.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -16,7 +17,7 @@ public class Contrato
     private Cliente cliente = new Cliente();
     private Colaborador fotografo = new Colaborador();
     private TipoProduto tipoproduto = new TipoProduto();
-    private LocalDateTime dataEvento;
+    private LocalDate dataEvento;
     private ArrayList<Pagamento>pagamentos = new ArrayList<>(); 
     private Long cliente_id;
     private Long tipoproduto_id;
@@ -50,11 +51,11 @@ public class Contrato
         this.tipoproduto = tipoproduto;
     }
 
-    public LocalDateTime getDataEvento() {
+    public LocalDate getDataEvento() {
         return dataEvento;
     }
 
-    public void setDataEvento(LocalDateTime dataEvento) {
+    public void setDataEvento(LocalDate dataEvento) {
         this.dataEvento = dataEvento;
     }
     public Colaborador getFotografo() {
@@ -95,12 +96,11 @@ public class Contrato
     @Override    
     public String toString() {
 
-        return ("Dados do contrato: "+"\n"
-                + "Nome do cliente: "+ cliente.getNome()+"\n"
-                + "Nome do fotógrafo: "+ fotografo.getNome()+"\n"
-                + "Item Contratado: "+ tipoproduto.getNome()+"\n"
-                + "Valor do Contrato: "+ tipoproduto.getValor()+"\n"
-                + "Data do evento: "+ dataEvento+"\n"
+        return ( "Cliente: "+cliente.getNome()+"\n"
+                + "     " + tipoproduto.getNome()+"\n"
+
+//                + "Valor do Contrato: "+ tipoproduto.getValor()+"\n"
+                + "     Data: "+ dataEvento+"\n"  
                 );
     }
 

@@ -6,42 +6,58 @@ import br.edu.ifnmg.estudiofotografia.entity.TipoProduto;
 import br.edu.ifnmg.estudiofotografia.repository.ClienteDao;
 import br.edu.ifnmg.estudiofotografia.repository.ContratoDao;
 import br.edu.ifnmg.estudiofotografia.repository.TipoProdutoDao;
+import br.edu.ifnmg.estudiofotografia.util.Util;
+import com.toedter.calendar.JDateChooser;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Rikelme
  */
 public class CadastroContrato extends javax.swing.JInternalFrame {
+
     private static CadastroContrato instance;
     private List<Cliente> todosClientes;
     private List<TipoProduto> todosTiposProdutos;
+
     /**
      * Creates new form CadastroContrato
      */
     public CadastroContrato() {
         initComponents();
-        
+
         todosClientes = new ClienteDao().localizarTodos();
         DefaultComboBoxModel<Cliente> comboBoxModel
                 = new DefaultComboBoxModel<>();
         comboBoxModel.addAll(todosClientes);
         cbCliente.setModel(comboBoxModel);
-        
+
         todosTiposProdutos = new TipoProdutoDao().localizarTodos();
-        DefaultComboBoxModel<TipoProduto> comboBoxModel1 
+        DefaultComboBoxModel<TipoProduto> comboBoxModel1
                 = new DefaultComboBoxModel<>();
         comboBoxModel1.addAll(todosTiposProdutos);
-        cbTipoProduto.setModel(comboBoxModel1);    
+        cbTipoProduto.setModel(comboBoxModel1);
     }
-    public static CadastroContrato getInstance(){
-        if(instance == null){
+
+    public static CadastroContrato getInstance() {
+        if (instance == null) {
             instance = new CadastroContrato();
         }
         return instance;
     }
-    
+
+    private void limparCampos() {
+        cbCliente.getModel().setSelectedItem(null);
+        cbTipoProduto.getModel().setSelectedItem(null);
+        dtDataEvento.setDate(null);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,7 +74,7 @@ public class CadastroContrato extends javax.swing.JInternalFrame {
         lblTipoProduto = new javax.swing.JLabel();
         cbTipoProduto = new javax.swing.JComboBox<>();
         lblDataEvento = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        dtDataEvento = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
         setMaximizable(true);
@@ -88,7 +104,7 @@ public class CadastroContrato extends javax.swing.JInternalFrame {
         lblDataEvento.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         lblDataEvento.setText("Data do Evento:");
 
-        jDateChooser1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        dtDataEvento.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout pnlCadastroContratoLayout = new javax.swing.GroupLayout(pnlCadastroContrato);
         pnlCadastroContrato.setLayout(pnlCadastroContratoLayout);
@@ -109,7 +125,7 @@ public class CadastroContrato extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlCadastroContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbTipoProduto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)))
+                            .addComponent(dtDataEvento, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroContratoLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnCadastrar)))
@@ -129,7 +145,7 @@ public class CadastroContrato extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(pnlCadastroContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblDataEvento)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dtDataEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(btnCadastrar)
                 .addContainerGap(30, Short.MAX_VALUE))
@@ -150,13 +166,28 @@ public class CadastroContrato extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        Contrato contrato = new Contrato();
-        contrato.setCliente(cbCliente.getItemAt(WIDTH));
-        contrato.setTipoproduto(cbTipoProduto.getItemAt(WIDTH));
-        
-        ContratoDao contratodao = new ContratoDao();
-        Long id = contratodao.salvar(contrato);
-        contrato.setId(id);
+        SQLException ex = (SQLException) new Exception();
+        try {
+            Contrato contrato = new Contrato();
+            contrato.setCliente((Cliente) cbCliente.getSelectedItem());
+            contrato.setTipoproduto((TipoProduto) cbTipoProduto.getSelectedItem());
+            contrato.setDataEvento(Util.convertDateToLocalDate(dtDataEvento.getDate()));
+
+            ContratoDao contratodao = new ContratoDao();
+            Long id = contratodao.salvar(contrato);
+            contrato.setId(id);
+
+        } catch (ex) {
+            JOptionPane.showMessageDialog(null, "Falha na Tentativa de cadastro de Contrato, algum dado está incorreto");
+        }
+
+//        if (cbCliente.getSelectedItem() != null || cbTipoProduto.getSelectedItem() != null) {
+//            JOptionPane.showMessageDialog(null, "Cadastro Realizado Com Sucesso!");
+//            dispose();
+//            limparCampos();
+//        } 
+            
+
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
 
@@ -164,7 +195,7 @@ public class CadastroContrato extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JComboBox<Cliente> cbCliente;
     private javax.swing.JComboBox<TipoProduto> cbTipoProduto;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser dtDataEvento;
     private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblDataEvento;
     private javax.swing.JLabel lblTipoProduto;
