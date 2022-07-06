@@ -166,8 +166,6 @@ public class CadastroContrato extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        SQLException ex = (SQLException) new Exception();
-        try {
             Contrato contrato = new Contrato();
             contrato.setCliente((Cliente) cbCliente.getSelectedItem());
             contrato.setTipoproduto((TipoProduto) cbTipoProduto.getSelectedItem());
@@ -177,14 +175,12 @@ public class CadastroContrato extends javax.swing.JInternalFrame {
             Long id = contratodao.salvar(contrato);
             contrato.setId(id);
 
-        } catch (ex) {
-            JOptionPane.showMessageDialog(null, "Falha na Tentativa de cadastro de Contrato, algum dado está incorreto");
-        }
+//            JOptionPane.showMessageDialog(null, "Falha na Tentativa de cadastro de Contrato, algum dado está incorreto");
 
 //        if (cbCliente.getSelectedItem() != null || cbTipoProduto.getSelectedItem() != null) {
 //            JOptionPane.showMessageDialog(null, "Cadastro Realizado Com Sucesso!");
-//            dispose();
-//            limparCampos();
+            dispose();
+            limparCampos();
 //        } 
             
 

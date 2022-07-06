@@ -14,6 +14,7 @@ public class Pessoa
     private String nome;
     private Long cpf;
     private String email;
+    private static final int MAX_LENGTH = 255;
 //</editor-fold>
 
     
@@ -66,7 +67,8 @@ public class Pessoa
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email.substring(0, Math.min(email.length(), MAX_LENGTH));
+//        this.email = email;
     }
 
 //</editor-fold>

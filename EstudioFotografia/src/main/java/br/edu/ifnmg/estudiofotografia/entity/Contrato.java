@@ -19,8 +19,6 @@ public class Contrato
     private TipoProduto tipoproduto = new TipoProduto();
     private LocalDate dataEvento;
     private ArrayList<Pagamento>pagamentos = new ArrayList<>(); 
-    private Long cliente_id;
-    private Long tipoproduto_id;
     
     
 //</editor-fold>
@@ -71,24 +69,7 @@ public class Contrato
 
     public void setPagamentos(ArrayList<Pagamento> pagamentos) {
         this.pagamentos = pagamentos;
-    }
-
-    public Long getCliente_id() {
-        return cliente_id;
-    }
-
-    public void setCliente_id(Long cliente_id) {
-        this.cliente_id = cliente_id;
-    }
-
-    public Long getTipoproduto_id() {
-        return tipoproduto_id;
-    }
-
-    public void setTipoproduto_id(Long tipoproduto_id) {
-        this.tipoproduto_id = tipoproduto_id;
-    }
-        
+    }   
     
 //</editor-fold>
 

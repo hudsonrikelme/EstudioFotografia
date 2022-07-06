@@ -108,10 +108,10 @@ public class Program {
 //        System.out.println(clb3);
 //</editor-fold>
 //<editor-fold defaultstate="collapsed" desc="Definição de 3 produtos">
-        TipoProduto prdt1 = new TipoProduto(1);
-        TipoProdutoDao tipoProdutoDao = new TipoProdutoDao();
-        TipoProduto prdt2 = new TipoProduto(2);
-        TipoProduto prdt3 = new TipoProduto(3);
+//        TipoProduto prdt1 = new TipoProduto(1);
+//        TipoProdutoDao tipoProdutoDao = new TipoProdutoDao();
+//        TipoProduto prdt2 = new TipoProduto(2);
+//        TipoProduto prdt3 = new TipoProduto(3);
         
 //        id = tipoProdutoDao.salvar(prdt1);
 //        prdt1.setId(id);
@@ -148,12 +148,10 @@ public class Program {
 //        new ClienteDao().salvar(cliente2);
 //</editor-fold>
 //<editor-fold defaultstate="collapsed" desc="Definição de 3 contratos">
-//        Contrato contrato1 = new Contrato();
+        Contrato contrato1 = new Contrato();
 //        contrato1.setTipoproduto(prdt1);
 //        contrato1.setCliente(cliente1);
 //        contrato1.setDataEvento(LocalDate.of(2022, 8, 25));
-//        contrato1.setCliente_id(1L);
-//        contrato1.setTipoproduto_id(1L);
 //        ContratoDao contratodao = new ContratoDao();
 //        contratodao.salvar(contrato1);
         
@@ -165,14 +163,13 @@ public class Program {
 //        System.out.println(contrato1);
 
 //</editor-fold>
-//        PagamentoDao pagamentodao = new PagamentoDao();
-//        Pagamento pagamento = new Pagamento();
-//        pagamento.setId(1L);
-//        pagamento.setDataPagamento(LocalDate.of(2022, 06, 24));
-//        pagamento.setValor(BigDecimal.valueOf(1500.0) );
-//        pagamento.setcontratoId(1L);
-//        pagamentodao.salvar(pagamento);
-//        pagamento.setId(id);
+        PagamentoDao pagamentodao = new PagamentoDao();
+        Pagamento pagamento = new Pagamento();
+        pagamento.setId(16l);
+        pagamento.setContrato(contrato1);
+        pagamento.setDataPagamento(LocalDate.of(2022, 06, 24));
+        pagamento.setValor(BigDecimal.valueOf(3000.0) );
+        pagamentodao.salvar(pagamento);
         
         
         

@@ -89,7 +89,6 @@ public class ContratoDao
             c.setId(resultSet.getLong("id"));
             Long cliente_id = resultSet.getLong("cliente_id");
             c.setCliente((Cliente) new ClienteDao().localizarPorId(cliente_id));
-            //c.setCliente_id(resultSet.getLong("cliente_id"));
             Long tipoproduto_id = resultSet.getLong("tipoproduto_id");
             c.setTipoproduto(new TipoProdutoDao().localizarPorId(tipoproduto_id));
             //c.setTipoproduto_id(resultSet.getLong("tipoproduto_id"));

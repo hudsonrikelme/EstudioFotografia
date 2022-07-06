@@ -1,7 +1,11 @@
 package br.edu.ifnmg.estudiofotografia.gui;
 
 import br.edu.ifnmg.estudiofotografia.entity.Contrato;
+import br.edu.ifnmg.estudiofotografia.entity.Pagamento;
 import br.edu.ifnmg.estudiofotografia.repository.ContratoDao;
+import br.edu.ifnmg.estudiofotografia.repository.PagamentoDao;
+import br.edu.ifnmg.estudiofotografia.util.Util;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 
@@ -33,6 +37,11 @@ public class CadastroPagamento extends javax.swing.JInternalFrame {
         }
         return instance;
     }
+    private void limparCampos() {
+        cbContrato.getModel().setSelectedItem(null);
+        ftfValor.setText(null);
+        dcDataPagamento.setDate(null);
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,6 +68,11 @@ public class CadastroPagamento extends javax.swing.JInternalFrame {
 
         btnPagamentoCadastrar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btnPagamentoCadastrar.setText("Cadastrar");
+        btnPagamentoCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPagamentoCadastrarActionPerformed(evt);
+            }
+        });
 
         lblValor.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         lblValor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -75,7 +89,7 @@ public class CadastroPagamento extends javax.swing.JInternalFrame {
 
         dcDataPagamento.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
-        ftfValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        ftfValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         ftfValor.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -89,10 +103,10 @@ public class CadastroPagamento extends javax.swing.JInternalFrame {
                         .addComponent(btnPagamentoCadastrar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblContrato)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addContainerGap()
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblContrato)
                                     .addComponent(lblDataPagamento)))
                             .addComponent(lblValor, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -135,6 +149,26 @@ public class CadastroPagamento extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPagamentoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagamentoCadastrarActionPerformed
+            Pagamento pagamento = new Pagamento();
+            Contrato contrato = new Contrato();
+
+            pagamento.setContrato((Contrato) cbContrato.getSelectedItem());
+            BigDecimal valor = new BigDecimal(ftfValor.getText());            
+            pagamento.setValor(valor);
+            pagamento.setDataPagamento(Util.convertDateToLocalDate(dcDataPagamento.getDate()));
+            //Id Nao Encontrada
+            pagamento.setId(contrato.getId());
+
+            PagamentoDao pagamentodao = new PagamentoDao();
+            Long id = pagamentodao.salvar(pagamento);
+            pagamento.setId(id);
+            
+            dispose();
+            limparCampos();
+            
+    }//GEN-LAST:event_btnPagamentoCadastrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

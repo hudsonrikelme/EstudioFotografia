@@ -1,23 +1,36 @@
-
 package br.edu.ifnmg.estudiofotografia.gui;
+
+import br.edu.ifnmg.estudiofotografia.entity.Usuario;
+import br.edu.ifnmg.estudiofotografia.repository.UsuarioDao;
+import com.sun.jdi.connect.Connector;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Rikelme
  */
 public class CadastroUsuario extends javax.swing.JInternalFrame {
+
     private static CadastroUsuario instance;
+
     /**
      * Creates new form CadastroCliente
      */
     public CadastroUsuario() {
         initComponents();
     }
-    public static CadastroUsuario getInstance(){
-        if(instance == null){
+
+    public static CadastroUsuario getInstance() {
+        if (instance == null) {
             instance = new CadastroUsuario();
         }
         return instance;
+    }
+
+    private void limparCampos() {
+        tfCadastroUsuario.setText(null);
+        ftfCadastroUsuarioSenha.setText(null);
+        cboAdministrador.setSelected(false);
     }
 
     /**
@@ -35,7 +48,7 @@ public class CadastroUsuario extends javax.swing.JInternalFrame {
         tfCadastroUsuario = new javax.swing.JTextField();
         ftfCadastroUsuarioSenha = new javax.swing.JFormattedTextField();
         btnCadastrar = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        cboAdministrador = new javax.swing.JCheckBox();
 
         setClosable(true);
         setMaximizable(true);
@@ -54,9 +67,14 @@ public class CadastroUsuario extends javax.swing.JInternalFrame {
 
         btnCadastrar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
-        jCheckBox1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jCheckBox1.setText("Administrador");
+        cboAdministrador.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        cboAdministrador.setText("Administrador");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,7 +92,7 @@ public class CadastroUsuario extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tfCadastroUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                             .addComponent(ftfCadastroUsuarioSenha)
-                            .addComponent(jCheckBox1))))
+                            .addComponent(cboAdministrador))))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -89,7 +107,7 @@ public class CadastroUsuario extends javax.swing.JInternalFrame {
                     .addComponent(lblSenha)
                     .addComponent(ftfCadastroUsuarioSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(jCheckBox1)
+                .addComponent(cboAdministrador)
                 .addGap(18, 18, 18)
                 .addComponent(btnCadastrar)
                 .addGap(33, 33, 33))
@@ -98,12 +116,33 @@ public class CadastroUsuario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        Usuario usuario = new Usuario();
+        UsuarioDao usuarioDao = new UsuarioDao();
+
+        usuario.setNomeSistema(tfCadastroUsuario.getText());
+        usuario.setSenha(ftfCadastroUsuarioSenha.getText());
+        usuario.setAdministrador(cboAdministrador.isSelected());
+        if (!tfCadastroUsuario.getText().isEmpty()) {
+            if (!ftfCadastroUsuarioSenha.getText().isEmpty()) {
+                Long id = usuarioDao.salvar(usuario);
+                usuario.setId(id);
+                dispose();
+                limparCampos();
+            } else JOptionPane.showMessageDialog(null, "Preencha o Campo: Senha");
+        } else {
+            JOptionPane.showMessageDialog(null, "Preencha todos os Campos");
+        }
+
+
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JCheckBox cboAdministrador;
     private javax.swing.JFormattedTextField ftfCadastroUsuarioSenha;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JTextField tfCadastroUsuario;

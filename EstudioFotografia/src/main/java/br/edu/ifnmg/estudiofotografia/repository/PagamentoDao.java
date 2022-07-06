@@ -111,7 +111,12 @@ public class PagamentoDao
             pagamento.setValor(resultSet.getBigDecimal("Valor"));
             pagamento.setDataPagamento(Util.convertDateToLocalDate(
                     resultSet.getDate("datapagamento")));
-            pagamento.setcontratoId(resultSet.getLong("contrato_id"));
+//            Long contrato_id = resultSet.getLong("contrato_id");
+//            pagamento.setContrato((Contrato) new ContratoDao().localizarPorId(contrato_id));
+            
+            
+            
+//            pagamento.setContratoId(resultSet.getLong("contrato_id"));
         } catch (SQLException ex) {
             Logger.getLogger(PagamentoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -143,7 +148,6 @@ public class PagamentoDao
     public Long salvar(Pagamento e) {
         // Novo registro: nenhum objeto localizado para atualização
         if (localizarPorId(e.getId()) == null) {
-
             // try-with-resources libera recurso ao final do bloco (PreparedStatement)
             try (PreparedStatement pstmt
                     = ConexaoBd.getConexao().prepareStatement(

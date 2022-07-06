@@ -17,6 +17,7 @@ public class Autenticacao extends javax.swing.JFrame {
     public Autenticacao() {
         initComponents();
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -91,22 +92,25 @@ public class Autenticacao extends javax.swing.JFrame {
         Usuario u = new Usuario();
         u.setNomeSistema(tfUsuario.getText());
         u.setSenha(pfSenha.getText());
-        
+
         Usuario recuperado = new UsuarioDao().autenticar(u);
-        
-        if(recuperado != null) {
-            // TODO Abrir janela principal passando o usuário
-            Principal principal = new Principal(u);
- 
-            principal.setVisible(true);
-            dispose();
-            
+        if (!tfUsuario.getText().isEmpty()) {
+            if (!pfSenha.getText().isEmpty()) {
+                if (recuperado != null) {
+                    Principal principal = new Principal(u);
+                    principal.setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Acesso negado!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Preencha o Campo: Senha!");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Acesso negado");
+            JOptionPane.showMessageDialog(null, "Preencha todos os Campos!");
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     public static void main(String args[]) {

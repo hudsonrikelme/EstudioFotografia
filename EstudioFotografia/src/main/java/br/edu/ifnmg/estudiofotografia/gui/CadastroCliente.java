@@ -1,4 +1,3 @@
-
 package br.edu.ifnmg.estudiofotografia.gui;
 
 import br.edu.ifnmg.estudiofotografia.entity.Cliente;
@@ -6,24 +5,34 @@ import br.edu.ifnmg.estudiofotografia.entity.Pessoa;
 import br.edu.ifnmg.estudiofotografia.repository.ClienteDao;
 import br.edu.ifnmg.estudiofotografia.repository.PessoaDao;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Rikelme
  */
 public class CadastroCliente extends javax.swing.JInternalFrame {
+
     private static CadastroCliente instance;
+
     /**
      * Creates new form CadastroCliente
      */
     public CadastroCliente() {
         initComponents();
     }
-    public static CadastroCliente getInstance(){
-        if(instance == null){
+
+    public static CadastroCliente getInstance() {
+        if (instance == null) {
             instance = new CadastroCliente();
         }
         return instance;
+    }
+
+    private void limparCampos() {
+        ftfCadastroClienteCpf.setText(null);
+        tfCadastroClienteEmail.setText(null);
+        tfCadastroClienteNome.setText(null);
     }
 
     /**
@@ -62,7 +71,7 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
         tfCadastroClienteEmail.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
         try {
-            ftfCadastroClienteCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            ftfCadastroClienteCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -124,20 +133,31 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
         PessoaDao pessoaDao = new PessoaDao();
         //JFormattedTextField cpf = new JFormattedTextField();
         //cpf.setValue(ftfCadastroClienteCpf);
-        
-        pessoa.setNome(tfCadastroClienteNome.getText());
-        Double valor = Double.parseDouble(ftfCadastroClienteCpf.getText());
-        pessoa.setCpf(valor.longValue());
-        pessoa.setEmail(tfCadastroClienteEmail.getText());
-        
-        Long id = pessoaDao.salvar(pessoa);
-        pessoa.setId(id);
-        
-        Cliente cliente = new Cliente(pessoa);
-        ClienteDao clientedao = new ClienteDao();
-        id = clientedao.salvar(cliente);
-        cliente.setId(id);
-        dispose();      
+        if (tfCadastroClienteNome.getText().length() < 50) {
+            if (tfCadastroClienteEmail.getText().length() < 255) {
+                pessoa.setNome(tfCadastroClienteNome.getText());
+                Double valor = Double.parseDouble(ftfCadastroClienteCpf.getText());
+                pessoa.setCpf(valor.longValue());
+                pessoa.setEmail(tfCadastroClienteEmail.getText());
+
+                Long id = pessoaDao.salvar(pessoa);
+                pessoa.setId(id);
+
+                Cliente cliente = new Cliente(pessoa);
+                ClienteDao clientedao = new ClienteDao();
+                id = clientedao.salvar(cliente);
+                cliente.setId(id);
+                JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso");
+                dispose();
+                limparCampos();
+            } else {
+                JOptionPane.showMessageDialog(null, "O Email tem mais de 255 caracteres");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "O Nome do Cliente tem mais 50 caracteres");
+        }
+
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
 
