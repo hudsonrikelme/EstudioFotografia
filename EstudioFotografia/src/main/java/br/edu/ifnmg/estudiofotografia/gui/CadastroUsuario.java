@@ -127,7 +127,6 @@ public class CadastroUsuario extends javax.swing.JInternalFrame {
             if (!ftfCadastroUsuarioSenha.getText().isEmpty()) {
                 Long id = usuarioDao.salvar(usuario);
                 usuario.setId(id);
-                dispose();
                 limparCampos();
             } else JOptionPane.showMessageDialog(null, "Preencha o Campo: Senha");
         } else {

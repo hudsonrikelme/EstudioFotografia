@@ -163,13 +163,14 @@ public class Program {
 //        System.out.println(contrato1);
 
 //</editor-fold>
+
         PagamentoDao pagamentodao = new PagamentoDao();
         Pagamento pagamento = new Pagamento();
-        pagamento.setId(16l);
         pagamento.setContrato(contrato1);
         pagamento.setDataPagamento(LocalDate.of(2022, 06, 24));
         pagamento.setValor(BigDecimal.valueOf(3000.0) );
-        pagamentodao.salvar(pagamento);
+        Long id = pagamentodao.salvar(pagamento);
+        pagamento.setId(id);
         
         
         

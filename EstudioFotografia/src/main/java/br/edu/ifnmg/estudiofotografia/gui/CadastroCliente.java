@@ -148,7 +148,6 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
                 id = clientedao.salvar(cliente);
                 cliente.setId(id);
                 JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso");
-                dispose();
                 limparCampos();
             } else {
                 JOptionPane.showMessageDialog(null, "O Email tem mais de 255 caracteres");

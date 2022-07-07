@@ -1,6 +1,7 @@
 package br.edu.ifnmg.estudiofotografia.repository;
 
 import br.edu.ifnmg.estudiofotografia.entity.Cliente;
+import br.edu.ifnmg.estudiofotografia.entity.TipoProduto;
 import br.edu.ifnmg.estudiofotografia.entity.Contrato;
 import br.edu.ifnmg.estudiofotografia.util.Util;
 import java.sql.Date;
@@ -90,7 +91,7 @@ public class ContratoDao
             Long cliente_id = resultSet.getLong("cliente_id");
             c.setCliente((Cliente) new ClienteDao().localizarPorId(cliente_id));
             Long tipoproduto_id = resultSet.getLong("tipoproduto_id");
-            c.setTipoproduto(new TipoProdutoDao().localizarPorId(tipoproduto_id));
+            c.setTipoproduto((TipoProduto) new TipoProdutoDao().localizarPorId(tipoproduto_id));
             //c.setTipoproduto_id(resultSet.getLong("tipoproduto_id"));
 
             c.setDataEvento(Util.convertDateToLocalDate(

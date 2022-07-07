@@ -13,18 +13,16 @@ public class Pagamento
 //<editor-fold defaultstate="collapsed" desc="Atributos">
     private BigDecimal valor;
     private LocalDate dataPagamento;
-//    private Long contrato_id;
     private Contrato contrato = new Contrato();
 
 //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Construtores">
     public Pagamento() {
     }
-//    public Pagamento(BigDecimal valor, LocalDate dataPagamento, Long contrato_id) {
-    public Pagamento(BigDecimal valor, LocalDate dataPagamento) {
+    public Pagamento(BigDecimal valor, LocalDate dataPagamento, Contrato contrato) {
         this.valor = valor;
         this.dataPagamento = dataPagamento;
-//        this.contrato_id = contrato_id;
+        this.contrato = contrato;
     }
 
 //</editor-fold>
@@ -45,14 +43,6 @@ public class Pagamento
         this.dataPagamento = dataPagamento;
     }
 
-//    public Long getContrato_id() {
-//        return contrato_id;
-//    }
-//
-//    public void setContrato_id(Long contrato_id) {
-//        this.contrato_id = contrato_id;
-//    }
-
     public Contrato getContrato() {
         return contrato;
     }
@@ -63,6 +53,11 @@ public class Pagamento
     
 
 //</editor-fold>
+
+    @Override
+    public String toString() {
+        return "Pagamento{" + "valor=" + valor + ", dataPagamento=" + dataPagamento + ", contrato=" + contrato + '}';
+    }
 
 
 

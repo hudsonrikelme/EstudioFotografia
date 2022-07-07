@@ -179,7 +179,6 @@ public class CadastroContrato extends javax.swing.JInternalFrame {
 
 //        if (cbCliente.getSelectedItem() != null || cbTipoProduto.getSelectedItem() != null) {
 //            JOptionPane.showMessageDialog(null, "Cadastro Realizado Com Sucesso!");
-            dispose();
             limparCampos();
 //        } 
             

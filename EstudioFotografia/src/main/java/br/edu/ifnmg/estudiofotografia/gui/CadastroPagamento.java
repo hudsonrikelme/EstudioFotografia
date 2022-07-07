@@ -152,21 +152,21 @@ public class CadastroPagamento extends javax.swing.JInternalFrame {
 
     private void btnPagamentoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagamentoCadastrarActionPerformed
             Pagamento pagamento = new Pagamento();
-            Contrato contrato = new Contrato();
+
 
             pagamento.setContrato((Contrato) cbContrato.getSelectedItem());
             BigDecimal valor = new BigDecimal(ftfValor.getText());            
             pagamento.setValor(valor);
             pagamento.setDataPagamento(Util.convertDateToLocalDate(dcDataPagamento.getDate()));
-            //Id Nao Encontrada
-            pagamento.setId(contrato.getId());
+
 
             PagamentoDao pagamentodao = new PagamentoDao();
             Long id = pagamentodao.salvar(pagamento);
             pagamento.setId(id);
             
-            dispose();
             limparCampos();
+//            dispose();
+            
             
     }//GEN-LAST:event_btnPagamentoCadastrarActionPerformed
 
