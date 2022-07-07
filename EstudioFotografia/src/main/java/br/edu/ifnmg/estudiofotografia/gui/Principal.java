@@ -55,6 +55,8 @@ public class Principal extends javax.swing.JFrame {
         mnuRelatoriosContratos = new javax.swing.JMenuItem();
         mnuRelatoriosUsuarios = new javax.swing.JMenuItem();
         mnuRelatoriosPagamentos = new javax.swing.JMenuItem();
+        mnuRelatoriosClientes = new javax.swing.JMenuItem();
+        mnuRelatorioEventos = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -151,6 +153,22 @@ public class Principal extends javax.swing.JFrame {
         });
         mnuRelatorios.add(mnuRelatoriosPagamentos);
 
+        mnuRelatoriosClientes.setText("Clientes");
+        mnuRelatoriosClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuRelatoriosClientesActionPerformed(evt);
+            }
+        });
+        mnuRelatorios.add(mnuRelatoriosClientes);
+
+        mnuRelatorioEventos.setText("Eventos");
+        mnuRelatorioEventos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuRelatorioEventosActionPerformed(evt);
+            }
+        });
+        mnuRelatorios.add(mnuRelatorioEventos);
+
         jMenuBar1.add(mnuRelatorios);
 
         setJMenuBar(jMenuBar1);
@@ -175,7 +193,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuCadastroContratoActionPerformed
 
     private void mnuRelatoriosContratosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRelatoriosContratosActionPerformed
-        try (InputStream in = getClass().getResourceAsStream("/Contrato.jasper")) {
+        try (InputStream in = getClass().getResourceAsStream("/RelatorioContratos.jasper")) {
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(in, null, ConexaoBd.getConexao());
             JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
@@ -255,6 +273,42 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_mnuRelatoriosPagamentosActionPerformed
 
+    private void mnuRelatoriosClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRelatoriosClientesActionPerformed
+       try (InputStream in = getClass().getResourceAsStream("/RelatoriosClientes.jasper")) {
+            JasperPrint jasperPrint = JasperFillManager.fillReport(in, null, ConexaoBd.getConexao());
+            JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+
+            JDialog dialog = new JDialog(this);
+            dialog.setContentPane(jasperViewer.getContentPane());
+            dialog.setSize(jasperViewer.getSize());
+            dialog.setTitle("Relatório de Clientes");
+            dialog.setModal(true);
+            dialog.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JRException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_mnuRelatoriosClientesActionPerformed
+
+    private void mnuRelatorioEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRelatorioEventosActionPerformed
+               try (InputStream in = getClass().getResourceAsStream("/RelatoriosEventos.jasper")) {
+            JasperPrint jasperPrint = JasperFillManager.fillReport(in, null, ConexaoBd.getConexao());
+            JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+
+            JDialog dialog = new JDialog(this);
+            dialog.setContentPane(jasperViewer.getContentPane());
+            dialog.setSize(jasperViewer.getSize());
+            dialog.setTitle("Relatório de Clientes");
+            dialog.setModal(true);
+            dialog.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JRException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_mnuRelatorioEventosActionPerformed
+
     private void anexarJanela(JInternalFrame janela) {
         if (!janela.isVisible()) {
             dskPrincipal.add(janela);
@@ -283,7 +337,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuCadastroContrato;
     private javax.swing.JMenuItem mnuCadastroPagamento;
     private javax.swing.JMenuItem mnuCadastroUsuario;
+    private javax.swing.JMenuItem mnuRelatorioEventos;
     private javax.swing.JMenu mnuRelatorios;
+    private javax.swing.JMenuItem mnuRelatoriosClientes;
     private javax.swing.JMenuItem mnuRelatoriosContratos;
     private javax.swing.JMenuItem mnuRelatoriosPagamentos;
     private javax.swing.JMenuItem mnuRelatoriosUsuarios;
