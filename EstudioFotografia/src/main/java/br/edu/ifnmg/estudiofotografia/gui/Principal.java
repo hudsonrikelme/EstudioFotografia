@@ -25,11 +25,9 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal(Usuario usuario) {
         initComponents();
-        //Resolver Bloqueio de Cadastro de Usuario para não administradores
-//        System.out.println(">>"+usuario.getAdministrador());
-//        if (!usuario.getAdministrador()) {
-//            mnuCadastroUsuario.setEnabled(false);
-//        }
+            if (!usuario.getAdministrador()) {
+            mnuCadastroUsuario.setEnabled(false);
+        }
 
     }
 

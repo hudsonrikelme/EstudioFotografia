@@ -97,7 +97,7 @@ public class Autenticacao extends javax.swing.JFrame {
         if (!tfUsuario.getText().isEmpty()) {
             if (!pfSenha.getText().isEmpty()) {
                 if (recuperado != null) {
-                    Principal principal = new Principal(u);
+                    Principal principal = new Principal(recuperado);
                     principal.setVisible(true);
                     dispose();
                 } else {

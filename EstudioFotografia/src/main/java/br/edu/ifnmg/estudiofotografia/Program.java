@@ -2,18 +2,13 @@ package br.edu.ifnmg.estudiofotografia;
 
 import br.edu.ifnmg.estudiofotografia.entity.Cliente;
 import br.edu.ifnmg.estudiofotografia.entity.Contrato;
-import br.edu.ifnmg.estudiofotografia.entity.Pagamento;
 import br.edu.ifnmg.estudiofotografia.entity.TipoProduto;
 import br.edu.ifnmg.estudiofotografia.entity.Pessoa;
 import br.edu.ifnmg.estudiofotografia.entity.Usuario;
 import br.edu.ifnmg.estudiofotografia.repository.ClienteDao;
-import br.edu.ifnmg.estudiofotografia.repository.ContratoDao;
-import br.edu.ifnmg.estudiofotografia.repository.PagamentoDao;
 import br.edu.ifnmg.estudiofotografia.repository.PessoaDao;
 import br.edu.ifnmg.estudiofotografia.repository.TipoProdutoDao;
 import br.edu.ifnmg.estudiofotografia.repository.UsuarioDao;
-import java.math.BigDecimal;
-import java.time.LocalDate;
 
 /**
  *
