@@ -8,9 +8,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Classe UsuarioDao
  *
-  CREATE TABLE `usuario` (
+ * @author rikelme
+ */
+/*
+CREATE TABLE `usuario` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `nomesistema` varchar(50) NOT NULL,
   `senha` char(32) NOT NULL,
@@ -18,13 +20,10 @@ import java.util.logging.Logger;
   PRIMARY KEY (`id`),
   UNIQUE KEY `nomesistema` (`nomesistema`)
   )engine=Innodb;
- *
- * @author rikelme
- *
  */
 public class UsuarioDao
         extends Dao<Usuario, Long> {
-    
+
     private static final String SALT = "P00estudiofotografi4";
 
     @Override
@@ -34,17 +33,17 @@ public class UsuarioDao
 
     @Override
     public String obterSentencaUpdate() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public String obterSentencaLocalizarPorId() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public String obterSentencaLocalizarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -85,9 +84,8 @@ public class UsuarioDao
         Usuario resposta = null;
 
         // Validação de usuario
-        try ( PreparedStatement preparedStatement
-            = ConexaoBd.getConexao().prepareStatement("select * from usuario where nomesistema = ? and senha = md5(concat('" + SALT + "', ?));"))
-        {
+        try (PreparedStatement preparedStatement
+                = ConexaoBd.getConexao().prepareStatement("select * from usuario where nomesistema = ? and senha = md5(concat('" + SALT + "', ?));")) {
 
             preparedStatement.setString(1, usuario.getNomeSistema());
             preparedStatement.setString(2, usuario.getSenha());

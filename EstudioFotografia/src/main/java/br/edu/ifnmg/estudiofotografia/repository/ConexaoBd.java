@@ -11,6 +11,7 @@ import java.util.logging.Logger;
  * @author Rikelme, Artur e Dijalmir
  */
 public class ConexaoBd {
+
     private static Connection conexao;
 
     /**

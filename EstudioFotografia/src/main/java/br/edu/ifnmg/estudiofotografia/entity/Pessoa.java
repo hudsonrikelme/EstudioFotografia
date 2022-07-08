@@ -6,20 +6,17 @@ import br.edu.ifnmg.estudiofotografia.util.Util;
  *
  * @author Rikelme, Artur e Dijalmir
  */
-public class Pessoa 
-        extends Entidade{
-    
+public class Pessoa
+        extends Entidade {
+
     //<editor-fold defaultstate="collapsed" desc="Atributos">
-    
     private String nome;
     private Long cpf;
     private String email;
     private static final int MAX_LENGTH = 255;
 //</editor-fold>
 
-    
     //<editor-fold defaultstate="collapsed" desc="Construtores">
-      
     public Pessoa() {
     }
 
@@ -29,20 +26,14 @@ public class Pessoa
         this.email = email;
     }
 
-    
-    
-    
 //</editor-fold>
-    
-    
     //<editor-fold defaultstate="collapsed" desc="Getters e Setters">
-    
-     public String getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) 
-              throws IllegalArgumentException {
+    public void setNome(String nome)
+            throws IllegalArgumentException {
         if (nome.length() > 50) {
             throw new IllegalArgumentException("Comprimento de nome inválido");
         }
@@ -53,8 +44,8 @@ public class Pessoa
         return cpf;
     }
 
-    public void setCpf(Long cpf) 
-             throws IllegalArgumentException {
+    public void setCpf(Long cpf)
+            throws IllegalArgumentException {
         if (Util.isCpfValido(cpf)) {
             this.cpf = cpf;
         } else {
@@ -72,11 +63,8 @@ public class Pessoa
     }
 
 //</editor-fold>
-
-    
     //<editor-fold defaultstate="collapsed" desc="To_String">
-    
-        @Override
+    @Override
     public String toString() {
         return "Entidade{id=" + getId()
                 + "} Pessoa{"
@@ -85,18 +73,6 @@ public class Pessoa
                 + ", email=" + email
                 + '}';
     }
-    
+
 //</editor-fold>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
 }

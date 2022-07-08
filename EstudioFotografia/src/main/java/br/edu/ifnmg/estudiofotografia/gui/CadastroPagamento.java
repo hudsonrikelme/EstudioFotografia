@@ -14,35 +14,37 @@ import javax.swing.DefaultComboBoxModel;
  * @author Rikelme
  */
 public class CadastroPagamento extends javax.swing.JInternalFrame {
+
     private static CadastroPagamento instance;
     private List<Contrato> todosContratos;
+
     /**
      * Creates new form CadastroContrato
      */
     public CadastroPagamento() {
         initComponents();
-        
-        
+
         todosContratos = new ContratoDao().localizarTodos();
         DefaultComboBoxModel<Contrato> comboBoxModel
                 = new DefaultComboBoxModel<>();
         comboBoxModel.addAll(todosContratos);
         cbContrato.setModel(comboBoxModel);
-        
-        
+
     }
-    public static CadastroPagamento getInstance(){
-        if(instance == null){
+
+    public static CadastroPagamento getInstance() {
+        if (instance == null) {
             instance = new CadastroPagamento();
         }
         return instance;
     }
+
     private void limparCampos() {
         cbContrato.getModel().setSelectedItem(null);
         ftfValor.setText(null);
         dcDataPagamento.setDate(null);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -151,23 +153,21 @@ public class CadastroPagamento extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagamentoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagamentoCadastrarActionPerformed
-            Pagamento pagamento = new Pagamento();
+        Pagamento pagamento = new Pagamento();
 
+        pagamento.setContrato((Contrato) cbContrato.getSelectedItem());
+        BigDecimal valor = new BigDecimal(ftfValor.getText());
+        pagamento.setValor(valor);
+        pagamento.setDataPagamento(Util.convertDateToLocalDate(dcDataPagamento.getDate()));
 
-            pagamento.setContrato((Contrato) cbContrato.getSelectedItem());
-            BigDecimal valor = new BigDecimal(ftfValor.getText());            
-            pagamento.setValor(valor);
-            pagamento.setDataPagamento(Util.convertDateToLocalDate(dcDataPagamento.getDate()));
+        PagamentoDao pagamentodao = new PagamentoDao();
+        Long id = pagamentodao.salvar(pagamento);
+        pagamento.setId(id);
 
-
-            PagamentoDao pagamentodao = new PagamentoDao();
-            Long id = pagamentodao.salvar(pagamento);
-            pagamento.setId(id);
-            
-            limparCampos();
+        limparCampos();
 //            dispose();
-            
-            
+
+
     }//GEN-LAST:event_btnPagamentoCadastrarActionPerformed
 
 

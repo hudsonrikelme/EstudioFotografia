@@ -12,8 +12,9 @@ import java.util.logging.Logger;
  * @author Rikelme
  */
 public class PessoaDao
-    extends Dao<Pessoa, Long>{
-   /*
+        extends Dao<Pessoa, Long> {
+
+    /*
     CREATE TABLE `pessoa` (
         `id` bigint(20) NOT NULL AUTO_INCREMENT,
         `cpf` bigint(20) NOT NULL,

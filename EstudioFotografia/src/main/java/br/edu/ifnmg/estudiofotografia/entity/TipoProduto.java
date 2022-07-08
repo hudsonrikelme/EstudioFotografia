@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
  *
  * @author Rikelme, Artur e Dijalmir
  */
-public class TipoProduto 
-                extends Entidade{
+public class TipoProduto
+        extends Entidade {
 
     //<editor-fold defaultstate="collapsed" desc="Atributos">
     private Integer index; // identificador do produto
@@ -18,14 +18,12 @@ public class TipoProduto
     private BigDecimal valor;
 
 //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="Construtor">
-   
-        public TipoProduto() {
+    public TipoProduto() {
     }
-    
+
     public TipoProduto(Integer index) {
-        
+
         this.index = index;
 
         if (null != index) {
@@ -57,9 +55,7 @@ public class TipoProduto
     }
 
 //</editor-fold>        
-
     //<editor-fold defaultstate="collapsed" desc="Getters e Setters">
-
     public Integer getIndex() {
         return index;
     }
@@ -91,26 +87,16 @@ public class TipoProduto
     public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
-    
-//</editor-fold>
 
+//</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="To_Strind">
-    
-        @Override
+    @Override
     public String toString() {
-        return( nome
-//                "Nome do Produto: "+ nome+"\n"
-//                + "    Duração: "+duracao+"h"
-//                + "    Valor: R$"+valor+",00"
+        return (nome //                "Nome do Produto: "+ nome+"\n"
+                //                + "    Duração: "+duracao+"h"
+                //                + "    Valor: R$"+valor+",00"
                 );
     }
-    
-    
+
 //</editor-fold>
-
-
-    
-    
-    
-    
 }

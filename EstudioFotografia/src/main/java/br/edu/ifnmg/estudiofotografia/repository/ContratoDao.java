@@ -4,23 +4,19 @@ import br.edu.ifnmg.estudiofotografia.entity.Cliente;
 import br.edu.ifnmg.estudiofotografia.entity.TipoProduto;
 import br.edu.ifnmg.estudiofotografia.entity.Contrato;
 import br.edu.ifnmg.estudiofotografia.util.Util;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Cliente contratante = new Cliente(); C
- * Colaborador fotografo = new Colaborador(); 
- * TipoProduto itemContratado = new TipoProduto();  //////
- * LocalDateTime dataDoEvento; 
- * ArrayList<Pagamento>pagamentos = new ArrayList<>();
+ * Cliente contratante = new Cliente(); C Colaborador fotografo = new
+ * Colaborador(); TipoProduto itemContratado = new TipoProduto(); //////
+ * LocalDateTime dataDoEvento; ArrayList<Pagamento>pagamentos = new
+ * ArrayList<>();
  *
  * @author Rikelme
  */
@@ -58,6 +54,7 @@ public class ContratoDao
     public String obterSentencaLocalizarTodos() {
         return "SELECT * FROM contrato;";
     }
+
     @Override
     public void montarDeclaracao(PreparedStatement pstmt, Contrato e) {
         try {
@@ -66,7 +63,6 @@ public class ContratoDao
             pstmt.setLong(2, e.getCliente().getId());
             pstmt.setLong(3, e.getTipoproduto().getId());
 
-            
             if (e.getId() != null && e.getId() != 0) {
                 pstmt.setLong(4, e.getId());
             }
@@ -102,6 +98,7 @@ public class ContratoDao
 
         return c;
     }
+
     public List<Contrato> extrairObjetos(ResultSet resultSet) {
 
         // Cria referência para inserção dos livros a serem mapeados

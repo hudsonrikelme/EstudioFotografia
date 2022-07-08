@@ -9,30 +9,23 @@ import java.util.ArrayList;
  *
  * @author Rikelme, Artur e Dijalmir
  */
-public class Contrato 
-            extends Entidade{
-    
+public class Contrato
+        extends Entidade {
+
 //<editor-fold defaultstate="collapsed" desc="Atributos">
-    
     private Cliente cliente = new Cliente();
     private Colaborador fotografo = new Colaborador();
     private TipoProduto tipoproduto = new TipoProduto();
     private LocalDate dataEvento;
-    private ArrayList<Pagamento>pagamentos = new ArrayList<>(); 
-    
-    
+    private ArrayList<Pagamento> pagamentos = new ArrayList<>();
+
 //</editor-fold>
-    
 //<editor-fold defaultstate="collapsed" desc="Construtores">
-    
-        public Contrato() {
+    public Contrato() {
     }
 
-    
 //</editor-fold>
-
 //<editor-fold defaultstate="collapsed" desc="Getters e Setters">
-
     public Cliente getCliente() {
         return cliente;
     }
@@ -56,6 +49,7 @@ public class Contrato
     public void setDataEvento(LocalDate dataEvento) {
         this.dataEvento = dataEvento;
     }
+
     public Colaborador getFotografo() {
         return fotografo;
     }
@@ -63,49 +57,25 @@ public class Contrato
     public void setFotografo(Colaborador fotografo) {
         this.fotografo = fotografo;
     }
+
     public ArrayList<Pagamento> getPagamentos() {
         return pagamentos;
     }
 
     public void setPagamentos(ArrayList<Pagamento> pagamentos) {
         this.pagamentos = pagamentos;
-    }   
-    
-//</editor-fold>
+    }
 
+//</editor-fold>
 //<editor-fold defaultstate="collapsed" desc="To_String">
-    @Override    
+    @Override
     public String toString() {
 
-        return ( "Cliente: "+cliente.getNome()+"\n"
-                + "     " + tipoproduto.getNome()+"\n"
-
-//                + "Valor do Contrato: "+ tipoproduto.getValor()+"\n"
-                + "     Data: "+ dataEvento+"\n"  
-                );
+        return ("Cliente: " + cliente.getNome() + "\n"
+                + "     " + tipoproduto.getNome() + "\n"
+                //                + "Valor do Contrato: "+ tipoproduto.getValor()+"\n"
+                + "     Data: " + dataEvento + "\n");
     }
 
 //</editor-fold>
-//<editor-fold defaultstate="collapsed" desc="Métodos para o array de pagamentos">
-    public void addPagamento(Pagamento pgt1) {
-        pagamentos.add(pgt1);
-    }
-
-    public void removePagamento(Pagamento pgt1) {
-
-        pagamentos.remove(pgt1);
-    }
-
-    public void quantidadeDePagamentos() {
-
-        pagamentos.size();
-
-    }
-
-    
-//</editor-fold>
-    
-    
-
-    
-    }
+}

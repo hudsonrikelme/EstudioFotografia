@@ -5,6 +5,7 @@ package br.edu.ifnmg.estudiofotografia.entity;
  * @author Rikelme, Artur e Djalmir
  */
 public abstract class Entidade {
+
     // Representação da chave primária padrão para a entidade.
     private Long id;
 

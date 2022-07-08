@@ -128,7 +128,9 @@ public class CadastroUsuario extends javax.swing.JInternalFrame {
                 Long id = usuarioDao.salvar(usuario);
                 usuario.setId(id);
                 limparCampos();
-            } else JOptionPane.showMessageDialog(null, "Preencha o Campo: Senha");
+            } else {
+                JOptionPane.showMessageDialog(null, "Preencha o Campo: Senha");
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Preencha todos os Campos");
         }

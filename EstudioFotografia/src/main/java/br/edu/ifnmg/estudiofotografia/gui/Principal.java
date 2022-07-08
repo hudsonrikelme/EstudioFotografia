@@ -26,9 +26,10 @@ public class Principal extends javax.swing.JFrame {
     public Principal(Usuario usuario) {
         initComponents();
         //Resolver Bloqueio de Cadastro de Usuario para não administradores
-        if (usuario.getAdministrador()) {
-            mnuCadastroUsuario.setEnabled(false);
-        }
+//        System.out.println(">>"+usuario.getAdministrador());
+//        if (!usuario.getAdministrador()) {
+//            mnuCadastroUsuario.setEnabled(false);
+//        }
 
     }
 
@@ -274,7 +275,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuRelatoriosPagamentosActionPerformed
 
     private void mnuRelatoriosClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRelatoriosClientesActionPerformed
-       try (InputStream in = getClass().getResourceAsStream("/RelatoriosClientes.jasper")) {
+        try (InputStream in = getClass().getResourceAsStream("/RelatoriosClientes.jasper")) {
             JasperPrint jasperPrint = JasperFillManager.fillReport(in, null, ConexaoBd.getConexao());
             JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
 
@@ -292,7 +293,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuRelatoriosClientesActionPerformed
 
     private void mnuRelatorioEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRelatorioEventosActionPerformed
-               try (InputStream in = getClass().getResourceAsStream("/RelatoriosEventos.jasper")) {
+        try (InputStream in = getClass().getResourceAsStream("/RelatoriosEventos.jasper")) {
             JasperPrint jasperPrint = JasperFillManager.fillReport(in, null, ConexaoBd.getConexao());
             JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
 

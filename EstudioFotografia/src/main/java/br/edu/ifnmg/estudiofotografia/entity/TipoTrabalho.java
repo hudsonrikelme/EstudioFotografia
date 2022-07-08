@@ -6,19 +6,16 @@ import java.math.BigDecimal;
  *
  * @author Rikelme
  */
-public class TipoTrabalho 
-            extends Entidade{
-    
+public class TipoTrabalho
+        extends Entidade {
+
     //<editor-fold defaultstate="collapsed" desc="Atributos">
-       
-        private Integer index;
-        private String nome = new String();
-        private BigDecimal remuneracao;
-        
+    private Integer index;
+    private String nome = new String();
+    private BigDecimal remuneracao;
+
 //</editor-fold>
-
     //<editor-fold defaultstate="collapsed" desc="Construtor">
-
     public TipoTrabalho() {
     }
 
@@ -45,16 +42,11 @@ public class TipoTrabalho
             }
         }
 
-        
     }
 
-        
-        
 //</editor-fold>
-
     //<editor-fold defaultstate="collapsed" desc="Getters e Setters">
-         
-         public Integer getIndex() {
+    public Integer getIndex() {
         return index;
     }
 
@@ -77,44 +69,17 @@ public class TipoTrabalho
     public void setRemuneracao(BigDecimal remuneracao) {
         this.remuneracao = remuneracao;
     }
-         
-         
-         
-         
-         
-//</editor-fold>
 
+//</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="To_String">
-    
-        @Override
+    @Override
     public String toString() {
-        
-        return ("Codigo da atividade: "+index+"\n"
-                + "Tipo de Função no ensaio: "+nome+"\n"
-                + "Remuneração: "+remuneracao+"\n");
-    
+
+        return ("Codigo da atividade: " + index + "\n"
+                + "Tipo de Função no ensaio: " + nome + "\n"
+                + "Remuneração: " + remuneracao + "\n");
+
     }
-   
-    
+
 //</editor-fold>
-    
-
-         
-         
-         
-         
-
-        
-        
-    
-
-
-
-
-    
-    
-    
-    
-
-    
 }

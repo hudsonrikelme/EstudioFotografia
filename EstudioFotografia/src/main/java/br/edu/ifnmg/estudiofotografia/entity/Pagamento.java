@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class Pagamento
         extends Entidade {
 
-//<editor-fold defaultstate="collapsed" desc="Atributos">
+    //<editor-fold defaultstate="collapsed" desc="Atributos">
     private BigDecimal valor;
     private LocalDate dataPagamento;
     private Contrato contrato = new Contrato();
@@ -19,6 +19,7 @@ public class Pagamento
     //<editor-fold defaultstate="collapsed" desc="Construtores">
     public Pagamento() {
     }
+
     public Pagamento(BigDecimal valor, LocalDate dataPagamento, Contrato contrato) {
         this.valor = valor;
         this.dataPagamento = dataPagamento;
@@ -50,16 +51,15 @@ public class Pagamento
     public void setContrato(Contrato contrato) {
         this.contrato = contrato;
     }
-    
 
 //</editor-fold>
-
     @Override
     public String toString() {
-        return "Pagamento{" + "valor=" + valor + ", dataPagamento=" + dataPagamento + ", contrato=" + contrato + '}';
+        return "Pagamento{"
+                + "valor=" + valor
+                + ", dataPagamento=" + dataPagamento
+                + ", contrato=" + contrato
+                + '}';
     }
 
-
-
-   
 }

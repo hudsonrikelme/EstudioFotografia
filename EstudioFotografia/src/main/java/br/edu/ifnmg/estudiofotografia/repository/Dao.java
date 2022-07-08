@@ -27,7 +27,7 @@ public abstract class Dao<E, K>
                 || ((Entidade) e).getId() == 0) {
             // Inserir novo registro
             // try-with-resources
-            try ( PreparedStatement preparedStatement
+            try (PreparedStatement preparedStatement
                     = ConexaoBd.getConexao().prepareStatement(
                             obterSentencaInsert(),
                             Statement.RETURN_GENERATED_KEYS)) {
@@ -57,7 +57,7 @@ public abstract class Dao<E, K>
 
         } else {
             // Atualizar registro existente
-            try ( PreparedStatement preparedStatement
+            try (PreparedStatement preparedStatement
                     = ConexaoBd.getConexao().prepareStatement(
                             obterSentencaUpdate())) {
 
@@ -110,6 +110,7 @@ public abstract class Dao<E, K>
 
         return true;
     }
+
     /**
      * Recupera um objeto do banco de dados.
      *
@@ -117,7 +118,7 @@ public abstract class Dao<E, K>
      * @return Objeto buscado
      */
     public E localizarPorId(K id) {
-        try ( PreparedStatement preparedStatement
+        try (PreparedStatement preparedStatement
                 = ConexaoBd.getConexao().prepareStatement(obterSentencaLocalizarPorId())) {
 
             // Substitui respectiva id na sentença SQL
@@ -141,21 +142,21 @@ public abstract class Dao<E, K>
         // Caso não haja registro com a id fornecida
         return null;
     }
-    
+
     public List<E> localizarTodos() {
-        
+
         ArrayList<E> resposta = new ArrayList<>();
-        
-        try ( PreparedStatement preparedStatement
+
+        try (PreparedStatement preparedStatement
                 = ConexaoBd.getConexao().prepareStatement(obterSentencaLocalizarTodos())) {
-            
+
             // Recupera os dados da consulta
             ResultSet resultSet
                     = preparedStatement.executeQuery();
 
             // Iterar sobre todos os registros
             while (resultSet.next()) {
-                
+
                 // Extrai e adionar "próximo" objeto
                 resposta.add(extrairObjeto(resultSet));
             }
@@ -183,7 +184,8 @@ public abstract class Dao<E, K>
      * @return Sentença SQL de atualização.
      */
     public abstract String obterSentencaUpdate();
-     /**
+
+    /**
      * Recupera a sentença SQL específica para a exclusão da entidade no banco
      * de dados.
      *
@@ -200,7 +202,7 @@ public abstract class Dao<E, K>
      * @return Sentença SQL de consulta de um registro.
      */
     public abstract String obterSentencaLocalizarPorId();
-    
+
     public abstract String obterSentencaLocalizarTodos();
 
     /**
@@ -213,18 +215,17 @@ public abstract class Dao<E, K>
 
     public abstract E extrairObjeto(ResultSet resultSet);
 
-
     private void ajustarIdDeclaracao(PreparedStatement pstmt, K id) {
         try {
             // Caso id seja um Long, emprega setLong()
-            if(id instanceof Long) {
+            if (id instanceof Long) {
                 // Cast é requerido porque K não é um tipo previamente definido
                 pstmt.setLong(1, (Long) id);
             } else {
                 // Caso id seja um Integer, emprega setLong()
                 pstmt.setInt(1, (Integer) id);
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(Dao.class.getName()).log(Level.SEVERE, null, ex);
         }

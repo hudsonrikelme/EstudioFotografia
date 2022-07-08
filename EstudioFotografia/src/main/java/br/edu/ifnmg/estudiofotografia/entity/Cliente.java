@@ -4,13 +4,14 @@ import br.edu.ifnmg.estudiofotografia.entity.Contrato;
 import br.edu.ifnmg.estudiofotografia.entity.Pessoa;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  *
  * @author Rikelme
  */
-public class Cliente 
+public class Cliente
         extends Pessoa {
-    
+
     //<editor-fold defaultstate="collapsed" desc="Atributos">
     private List<Contrato> contratos = new ArrayList<>();
 
@@ -18,11 +19,12 @@ public class Cliente
     //<editor-fold defaultstate="collapsed" desc="Construtores">
     public Cliente() {
     }
+
     public Cliente(Pessoa p1) {
         super.setNome(p1.getNome());
         super.setEmail(p1.getEmail());
         super.setCpf(p1.getCpf());
-        
+
     }
 
     //</editor-fold>
@@ -48,19 +50,12 @@ public class Cliente
     //<editor-fold defaultstate="collapsed" desc="To_string">
     @Override
     public String toString() {
-        return ( super.getNome() + "\n"
-//                + "     CPF: " + super.getCpf() + "\n"
-//                + "     Email: " + super.getEmail() + "\n"
-//                + "     Numero de Contratos: " + this.numeroDeContratos()
-                +"\n");
+        return (super.getNome() + "\n"
+                //                + "     CPF: " + super.getCpf() + "\n"
+                //                + "     Email: " + super.getEmail() + "\n"
+                //                + "     Numero de Contratos: " + this.numeroDeContratos()
+                + "\n");
     }
 //</editor-fold>
 
-
-
-    
-    
-    
-    
-    
 }

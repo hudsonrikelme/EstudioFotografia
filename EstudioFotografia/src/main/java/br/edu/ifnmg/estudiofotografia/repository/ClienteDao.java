@@ -11,9 +11,10 @@ import java.util.logging.Logger;
  *
  * @author Rikelme
  */
-public class ClienteDao 
-        extends Dao<Cliente, Long>{
-   /*
+public class ClienteDao
+        extends Dao<Cliente, Long> {
+
+    /*
     CREATE TABLE `cliente` (
         `id` bigint(20) NOT NULL AUTO_INCREMENT,
         `cpf` bigint(20) NOT NULL,
@@ -82,5 +83,5 @@ public class ClienteDao
         }
 
         return cliente;
-    } 
+    }
 }

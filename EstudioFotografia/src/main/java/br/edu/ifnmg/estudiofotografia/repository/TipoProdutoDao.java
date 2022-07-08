@@ -13,8 +13,9 @@ import java.util.logging.Logger;
  *
  * @author Rikelme
  */
-public class TipoProdutoDao 
-            extends Dao<TipoProduto, Long>{
+public class TipoProdutoDao
+        extends Dao<TipoProduto, Long> {
+
     /*
     CREATE TABLE `tipoproduto` (
         `id` bigint(20) NOT NULL AUTO_INCREMENT,

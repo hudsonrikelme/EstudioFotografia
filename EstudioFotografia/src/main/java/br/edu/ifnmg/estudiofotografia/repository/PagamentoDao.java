@@ -11,12 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author Rikelme
  */
-public class PagamentoDao 
-            extends Dao<Pagamento, Long>{
+public class PagamentoDao
+        extends Dao<Pagamento, Long> {
+
     /*
     CREATE TABLE `pagamento` (
              `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -34,7 +36,7 @@ public class PagamentoDao
         List<Pagamento> pagamentos = new ArrayList<>();
 
         // Tenta preparar uma sentença SQL para a conexão já estabelecida
-        try ( PreparedStatement pstmt
+        try (PreparedStatement pstmt
                 = ConexaoBd.getConexao().prepareStatement(
                         // Sentença SQL para recuperação de todos os registros
                         obterDeclaracaoSelecionarPagamentosPorContrato())) {
@@ -56,8 +58,7 @@ public class PagamentoDao
         // ou a relação de objeto(s) recuperado(s)
         return pagamentos;
     }
-    
-    
+
     @Override
     public String obterSentencaInsert() {
         return "insert into pagamento (id, valor, datapagamento, contrato_id) values (default, ?, ?, ?);";
@@ -81,6 +82,7 @@ public class PagamentoDao
     private String obterDeclaracaoSelecionarPagamentosPorContrato() {
         return "SELECT * FROM pagamento WHERE contrato_id = ?;";
     }
+
     @Override
     public void montarDeclaracao(PreparedStatement pstmt, Pagamento e) {
         try {
@@ -121,6 +123,7 @@ public class PagamentoDao
 
         return pagamento;
     }
+
     public List<Pagamento> extrairObjetos(ResultSet resultSet) {
 
         // Cria referência para inserção das comentarios a serem mapeados
@@ -176,5 +179,4 @@ public class PagamentoDao
 //        // longa, esse trecho de código não reconhece tal tipo implicitamente
 //        return e.getId();
 //    }
-    
 }

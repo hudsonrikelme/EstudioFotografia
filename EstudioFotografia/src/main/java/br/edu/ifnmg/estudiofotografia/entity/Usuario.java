@@ -3,8 +3,8 @@ package br.edu.ifnmg.estudiofotografia.entity;
 /**
  * Usuario para acesso ao sistema
  *
- * @author 
- * 
+ * @author
+ *
  */
 public class Usuario
         extends Entidade {
@@ -15,7 +15,7 @@ public class Usuario
 
     //<editor-fold defaultstate="collapsed" desc="Constructor">
     public Usuario() {
-        administrador = false;
+//        administrador = false;
     }
     //</editor-fold>
 

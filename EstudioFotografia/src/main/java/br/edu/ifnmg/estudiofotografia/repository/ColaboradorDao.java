@@ -11,8 +11,9 @@ import java.util.logging.Logger;
  *
  * @author Rikelme
  */
-public class ColaboradorDao 
-        extends Dao<Pessoa, Long>{
+public class ColaboradorDao
+        extends Dao<Pessoa, Long> {
+
     /*
     CREATE TABLE `colaborador` (
         `id` bigint(20) NOT NULL AUTO_INCREMENT,
